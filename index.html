@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ghid dresaj canin</title>
+<meta name="description" content="Ghid dresaj canin: comenzi de bază, probleme de comportament și dresaj pentru pui.">
+<meta name="theme-color" content="#1f2e1a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1f2e1a;
+    --forest-light:#2f4228;
+    --forest-pale:#e7ede3;
+    --gold:#c9932f;
+    --gold-light:#e7bd6a;
+    --leather:#7a4b32;
+    --rust:#a8492c;
+    --ivory:#faf7f0;
+    --card:#ffffff;
+    --ink:#24211c;
+    --ink-soft:#5c574c;
+    --line:#e7e0d2;
+    --radius:18px;
+    --shadow: 0 2px 10px rgba(31,46,26,0.08), 0 1px 2px rgba(31,46,26,0.06);
+  }
+  [data-theme="dark"]{
+    --forest:#8fbf7f;
+    --forest-light:#5c8a52;
+    --forest-pale:#243523;
+    --gold:#e0ac47;
+    --gold-light:#f0cd8c;
+    --leather:#c99a6e;
+    --rust:#e2765a;
+    --ivory:#171712;
+    --card:#211f19;
+    --ink:#f0ece1;
+    --ink-soft:#a89f8d;
+    --line:#38352a;
+    --shadow: 0 2px 10px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.3);
+  }
+  [data-theme="dark"] header.top{background:linear-gradient(160deg, #10160d 0%, #1c2818 100%);}
+  [data-theme="dark"] .sheet-head{background:linear-gradient(160deg, #10160d, #1c2818);}
+  [data-theme="dark"] nav.tabbar{background:var(--card);}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overscroll-behavior-y:none;
+    padding-bottom:calc(72px + env(safe-area-inset-bottom));
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',system-ui,sans-serif;
+    font-weight:700;
+    color:var(--forest);
+    margin:0;
+  }
+  .app{max-width:520px;margin:0 auto;position:relative;min-height:100vh;background:var(--ivory);}
+
+  /* ---- Header ---- */
+  header.top{
+    background:linear-gradient(160deg, var(--forest) 0%, var(--forest-light) 100%);
+    color:var(--ivory);
+    padding:22px 20px 26px;
+    position:sticky; top:0; z-index:20;
+    border-bottom-left-radius:22px;
+    border-bottom-right-radius:22px;
+    box-shadow:var(--shadow);
+  }
+  header.top .brand{display:flex; align-items:center; gap:10px;}
+  header.top .brand .pawmark{width:34px;height:34px;flex:none;}
+  header.top .brand h1{font-size:19.5px; color:#fff; letter-spacing:.1px; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  header.top .icon-btn{
+    width:34px; height:34px; border-radius:50%; border:1px solid rgba(231,189,106,0.35);
+    background:rgba(255,255,255,0.08); color:#fff; font-size:15px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  header.top .icon-btns{display:flex; gap:8px;}
+  header.top .tagline{font-size:13px; color:var(--gold-light); margin-top:2px; font-weight:500;}
+  header.top .subrow{display:flex; justify-content:space-between; align-items:flex-end; margin-top:16px;}
+  .progress-pill{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(231,189,106,0.35);
+    border-radius:999px;
+    padding:6px 12px;
+    font-size:12px;
+    color:var(--gold-light);
+    font-weight:600;
+  }
+
+  main{padding:18px 16px 12px;}
+  .view{display:none;}
+  .view.active{display:block; animation:fadein .22s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  section.block{margin-bottom:26px;}
+  section.block h2{font-size:17px; margin-bottom:2px;}
+  section.block .sub{font-size:13px; color:var(--ink-soft); margin-bottom:12px;}
+
+  /* ---- Home ---- */
+  .principle-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+    box-shadow:var(--shadow);
+    margin-bottom:12px;
+  }
+  .principle-card h3{font-size:15px; display:flex; align-items:center; gap:8px; margin-bottom:6px;}
+  .principle-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.5; margin:0;}
+  .principle-badge{
+    width:26px;height:26px;border-radius:8px;background:var(--forest-pale);
+    display:flex;align-items:center;justify-content:center;font-size:14px;flex:none;
+  }
+
+  .cat-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .cat-tile{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 14px; box-shadow:var(--shadow); cursor:pointer; text-align:left;
+    display:flex; flex-direction:column; gap:8px; min-height:118px;
+  }
+  .cat-tile .icon{font-size:26px;}
+  .cat-tile .name{font-family:'Baloo 2'; font-weight:700; font-size:14.5px; color:var(--forest);}
+  .cat-tile .count{font-size:11.5px; color:var(--ink-soft);}
+  .cat-tile .bar{height:5px; border-radius:99px; background:var(--forest-pale); overflow:hidden; margin-top:auto;}
+  .cat-tile .bar > span{display:block; height:100%; background:var(--gold); border-radius:99px;}
+
+  /* ---- Lesson list cards ---- */
+  .lesson-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:14px 14px; box-shadow:var(--shadow); margin-bottom:10px;
+    display:flex; align-items:center; gap:12px; cursor:pointer;
+  }
+  .lesson-card .emoji{
+    width:42px;height:42px;border-radius:12px;background:var(--forest-pale);
+    display:flex;align-items:center;justify-content:center;font-size:20px;flex:none;
+  }
+  .lesson-card .info{flex:1; min-width:0;}
+  .lesson-card .info h3{font-size:14.5px; color:var(--ink); font-family:'Baloo 2'; font-weight:600;}
+  .lesson-card .info .meta{font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+  .lesson-card .check{
+    width:24px;height:24px;border-radius:50%;border:2px solid var(--line); flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:13px; color:transparent;
+  }
+  .lesson-card .check.done{background:var(--gold); border-color:var(--gold); color:#fff;}
+
+  /* ---- Detail overlay ---- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(20,24,16,0.45); z-index:50;
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .overlay.active{display:flex;}
+  .sheet{
+    background:var(--ivory); width:100%; max-width:520px; max-height:88vh; overflow-y:auto;
+    border-top-left-radius:24px; border-top-right-radius:24px; padding:0 0 28px;
+    animation:slideup .25s ease;
+  }
+  @keyframes slideup{from{transform:translateY(30px); opacity:.6;} to{transform:translateY(0); opacity:1;}}
+  .sheet-head{
+    background:linear-gradient(160deg, var(--forest), var(--forest-light));
+    color:#fff; padding:20px 20px 18px; border-top-left-radius:24px; border-top-right-radius:24px;
+    position:sticky; top:0;
+  }
+  .sheet-head .close{
+    position:absolute; right:14px; top:14px; width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:16px; cursor:pointer;
+  }
+  .sheet-head .tag{font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:.4px; text-transform:uppercase;}
+  .sheet-head h2{color:#fff; font-size:20px; margin-top:4px;}
+  .sheet-head .meta-row{display:flex; gap:14px; margin-top:10px; font-size:12px; color:rgba(255,255,255,0.75);}
+  .sheet-body{padding:18px 20px 4px;}
+  .sheet-body h4{
+    font-family:'Baloo 2'; font-size:13.5px; color:var(--leather); text-transform:uppercase;
+    letter-spacing:.3px; margin:20px 0 8px;
+  }
+  .sheet-body h4:first-child{margin-top:0;}
+  .sheet-body p{font-size:14px; line-height:1.6; color:var(--ink); margin:0 0 8px;}
+  .steps{margin:0; padding:0; list-style:none; counter-reset:step;}
+  .steps li{
+    counter-increment:step; position:relative; padding:0 0 12px 34px; font-size:14px; line-height:1.5; color:var(--ink);
+  }
+  .steps li::before{
+    content:counter(step); position:absolute; left:0; top:-1px; width:24px; height:24px;
+    background:var(--gold); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; font-family:'Baloo 2';
+  }
+  .pill-list{margin:0; padding:0; list-style:none;}
+  .pill-list li{
+    font-size:13.5px; line-height:1.5; padding:8px 0 8px 22px; position:relative; color:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .pill-list li:last-child{border-bottom:none;}
+  .pill-list.good li::before{content:"✓"; position:absolute; left:0; color:var(--forest); font-weight:700;}
+  .pill-list.bad li::before{content:"✕"; position:absolute; left:0; color:var(--rust); font-weight:700;}
+  .callout{
+    background:var(--forest-pale); border-left:3px solid var(--gold); border-radius:10px;
+    padding:12px 14px; font-size:13px; line-height:1.55; color:var(--forest); margin-top:6px;
+  }
+  .callout.warn{background:#fbeae3; border-left-color:var(--rust); color:#6e2c17;}
+  .mark-done{
+    width:100%; margin-top:22px; padding:14px; border:none; border-radius:14px;
+    background:var(--forest); color:#fff; font-family:'Baloo 2'; font-weight:700; font-size:15px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .mark-done.done{background:var(--gold);}
+
+  /* ---- Progress view ---- */
+  .stat-row{display:flex; gap:10px; margin-bottom:18px;}
+  .stat-card{
+    flex:1; background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:14px 10px; text-align:center; box-shadow:var(--shadow);
+  }
+  .stat-card .num{font-family:'Baloo 2'; font-size:24px; color:var(--forest); font-weight:800;}
+  .stat-card .lbl{font-size:11px; color:var(--ink-soft); margin-top:2px;}
+  .prog-cat{margin-bottom:16px;}
+  .prog-cat .rowtop{display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;}
+  .prog-cat .rowtop b{font-family:'Baloo 2'; color:var(--ink);}
+  .prog-cat .rowtop span{color:var(--ink-soft);}
+  .prog-bar{height:8px; border-radius:99px; background:var(--forest-pale); overflow:hidden;}
+  .prog-bar > span{display:block; height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius:99px; transition:width .3s ease;}
+  .reset-btn{
+    margin-top:10px; width:100%; padding:12px; border-radius:12px; border:1px solid var(--line);
+    background:transparent; color:var(--rust); font-size:13px; font-weight:600; cursor:pointer;
+  }
+
+  /* ---- Bottom nav ---- */
+  nav.tabbar{
+    position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+    width:100%; max-width:520px; background:#fff; border-top:1px solid var(--line);
+    display:flex; padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+    z-index:30;
+  }
+  nav.tabbar button{
+    flex:1; min-width:0; background:none; border:none; display:flex; flex-direction:column; align-items:center;
+    gap:3px; padding:6px 1px; cursor:pointer; color:var(--ink-soft); font-family:'Inter';
+  }
+  nav.tabbar button .ic{font-size:18px; line-height:1;}
+  nav.tabbar button .lb{
+    font-size:9.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    max-width:100%;
+  }
+  nav.tabbar button.active{color:var(--forest);}
+  nav.tabbar button.active .ic{transform:translateY(-1px);}
+
+  .empty-note{font-size:12.5px; color:var(--ink-soft); text-align:center; padding:20px 10px;}
+
+  /* ---- Search overlay ---- */
+  .search-overlay{
+    position:fixed; inset:0; background:rgba(20,24,16,0.45); z-index:60;
+    display:none; align-items:flex-start; justify-content:center;
+  }
+  .search-overlay.active{display:flex;}
+  .search-panel{
+    background:var(--ivory); width:100%; max-width:520px; max-height:100vh; overflow-y:auto;
+    padding:16px 16px 24px;
+  }
+  .search-row{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .search-row input{
+    flex:1; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+    background:var(--card); color:var(--ink); font-size:15px; font-family:'Inter';
+  }
+  .search-row input:focus{outline:2px solid var(--gold); outline-offset:1px;}
+  .search-row button{
+    background:none; border:none; color:var(--forest); font-family:'Baloo 2'; font-weight:700;
+    font-size:14px; cursor:pointer; flex:none;
+  }
+  .search-result{
+    display:flex; align-items:center; gap:12px; padding:12px 8px; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .search-result .emoji{font-size:20px; width:36px; height:36px; border-radius:10px; background:var(--forest-pale); display:flex; align-items:center; justify-content:center; flex:none;}
+  .search-result .info h4{font-family:'Baloo 2'; font-size:14px; margin:0; color:var(--ink);}
+  .search-result .info .cat{font-size:11.5px; color:var(--ink-soft); margin-top:1px;}
+
+  /* ---- Subtabs (Utile) ---- */
+  .subtabs-wrap{position:relative; margin-bottom:16px;}
+  .subtabs{
+    display:flex; gap:8px; overflow-x:auto; padding:2px 4px 8px; scrollbar-width:none;
+    -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity; cursor:grab;
+  }
+  .subtabs.dragging{cursor:grabbing; scroll-snap-type:none;}
+  .subtabs::-webkit-scrollbar{display:none;}
+  .subtabs button{
+    flex:none; padding:9px 14px; border-radius:999px; border:1px solid var(--line); background:var(--card);
+    color:var(--ink-soft); font-size:12.5px; font-weight:600; font-family:'Inter'; cursor:pointer; white-space:nowrap;
+    scroll-snap-align:start; user-select:none;
+  }
+  .subtabs button.active{background:var(--forest); border-color:var(--forest); color:#fff;}
+  .subtabs-wrap::before, .subtabs-wrap::after{
+    content:""; position:absolute; top:0; bottom:8px; width:22px; pointer-events:none; z-index:2;
+    transition:opacity .15s ease;
+  }
+  .subtabs-wrap::before{left:0; background:linear-gradient(90deg, var(--ivory), transparent);}
+  .subtabs-wrap::after{right:0; background:linear-gradient(270deg, var(--ivory), transparent);}
+  .subtabs-wrap.at-start::before{opacity:0;}
+  .subtabs-wrap.at-end::after{opacity:0;}
+  .usec{display:none;}
+  .usec.active{display:block;}
+
+  /* ---- Calculator ---- */
+  .calc-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
+  .calc-field{margin-bottom:14px;}
+  .calc-field label{display:block; font-size:12.5px; font-weight:600; color:var(--ink-soft); margin-bottom:6px;}
+  .calc-field select, .calc-field input, .calc-field textarea{
+    width:100%; padding:11px 12px; border-radius:10px; border:1px solid var(--line);
+    background:var(--ivory); color:var(--ink); font-size:14.5px; font-family:'Inter'; resize:vertical;
+  }
+  .calc-btn{
+    width:100%; padding:13px; border:none; border-radius:12px; background:var(--gold); color:#fff;
+    font-family:'Baloo 2'; font-weight:700; font-size:14.5px; cursor:pointer; margin-top:4px;
+  }
+  .calc-result{
+    margin-top:16px; background:var(--forest-pale); border-radius:14px; padding:16px; text-align:center; display:none;
+  }
+  .calc-result.show{display:block;}
+  .calc-result .big{font-family:'Baloo 2'; font-size:32px; color:var(--forest); font-weight:800;}
+  .calc-result .lbl{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .calc-result .stage{
+    display:inline-block; margin-top:10px; padding:5px 12px; border-radius:999px; background:var(--gold);
+    color:#fff; font-size:11.5px; font-weight:700;
+  }
+
+  /* ---- Feeding guide ---- */
+  .feed-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:var(--shadow); margin-bottom:12px;}
+  .feed-card h3{font-size:14.5px; display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+  .feed-card .meals{font-size:12px; color:var(--gold); font-weight:700; margin-bottom:8px;}
+  .feed-card ul{margin:0; padding-left:18px; font-size:13px; color:var(--ink-soft); line-height:1.6;}
+  .toxic-card{background:#fbeae3; border-left:3px solid var(--rust); border-radius:10px; padding:14px; font-size:13px; line-height:1.6; color:#6e2c17; margin-top:4px;}
+  [data-theme="dark"] .toxic-card{background:#3a1f16; color:#f2c4b3;}
+
+  /* ---- Checklist ---- */
+  .check-cat{font-family:'Baloo 2'; font-size:13.5px; color:var(--leather); text-transform:uppercase; letter-spacing:.3px; margin:18px 0 8px;}
+  .check-cat:first-child{margin-top:0;}
+  .check-row{
+    display:flex; align-items:center; gap:12px; padding:11px 4px; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .check-row .box{
+    width:22px; height:22px; border-radius:7px; border:2px solid var(--line); flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:transparent;
+  }
+  .check-row .box.done{background:var(--gold); border-color:var(--gold); color:#fff;}
+  .check-row .txt{font-size:13.5px; color:var(--ink);}
+  .check-row .txt.done{color:var(--ink-soft); text-decoration:line-through;}
+  .checklist-progress{margin-bottom:6px;}
+
+  .callout.warn strong{color:inherit;}
+
+  /* ---- Journal ---- */
+  .journal-entry{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px 15px; margin-bottom:10px; box-shadow:var(--shadow);}
+  .journal-entry .jrow{display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;}
+  .journal-entry .jdate{font-family:'Baloo 2'; font-size:13.5px; color:var(--ink); font-weight:600;}
+  .journal-entry .jdel{background:none; border:none; color:var(--ink-soft); cursor:pointer; font-size:15px; padding:2px 4px;}
+  .journal-entry .jmeta{font-size:11.5px; color:var(--gold); font-weight:600; margin-bottom:5px;}
+  .journal-entry .jtext{font-size:13px; color:var(--ink-soft); line-height:1.5;}
+
+  /* ---- Health reminders ---- */
+  .reminder-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:12px 14px; margin-bottom:10px; box-shadow:var(--shadow);
+  }
+  .reminder-row .rtitle{font-family:'Baloo 2'; font-size:13.5px; color:var(--ink); font-weight:600;}
+  .reminder-row .rdate{font-size:11.5px; margin-top:3px; font-weight:600;}
+  .reminder-row .rdate.overdue{color:var(--rust);}
+  .reminder-row .rdate.soon{color:var(--gold);}
+  .reminder-row .rdate.normal{color:var(--ink-soft);}
+  .reminder-row .ractions{display:flex; gap:6px; flex:none;}
+  .reminder-row .ric-btn{
+    width:30px; height:30px; border-radius:50%; border:1px solid var(--line); background:var(--ivory);
+    color:var(--ink-soft); cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">
+      <svg class="pawmark" viewBox="0 0 100 100" fill="none">
+        <ellipse cx="50" cy="62" rx="17" ry="15" fill="#e7bd6a"/>
+        <ellipse cx="26" cy="38" rx="10" ry="11" fill="#e7bd6a"/>
+        <ellipse cx="45" cy="24" rx="10" ry="11" fill="#e7bd6a"/>
+        <ellipse cx="65" cy="24" rx="10" ry="11" fill="#e7bd6a"/>
+        <ellipse cx="80" cy="40" rx="10" ry="11" fill="#e7bd6a" transform="rotate(10 80 40)"/>
+      </svg>
+      <h1>Ghid dresaj canin</h1>
+      <div class="icon-btns">
+        <button class="icon-btn" id="searchBtn" aria-label="Caută">🔍</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Comută tema">🌙</button>
+      </div>
+    </div>
+    <div class="tagline">Ghidul tău complet de dresaj canin</div>
+    <div class="subrow">
+      <div style="font-size:12px; color:rgba(255,255,255,0.7);" id="greeting">Hai să începem antrenamentul de azi 🐾</div>
+      <div class="progress-pill" id="headerProgress">0% parcurs</div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <div class="view active" id="view-home">
+      <section class="block">
+        <h2>Cele 4 reguli de aur</h2>
+        <div class="sub">Aplică-le în orice lecție de mai jos.</div>
+        <div class="principle-card">
+          <h3><span class="principle-badge">🎯</span> Întărire pozitivă</h3>
+          <p>Recompensează imediat (sub 2 secunde) comportamentul dorit, cu recompensă mică și gustoasă. Nu certa fizic — încetinește învățarea și strică încrederea.</p>
+        </div>
+        <div class="principle-card">
+          <h3><span class="principle-badge">⏱️</span> Sesiuni scurte, dese</h3>
+          <p>5–10 minute, de 2–3 ori pe zi, bat cu mult o singură sesiune lungă. Câinele obosește mental repede — termină mereu cu o reușită.</p>
+        </div>
+        <div class="principle-card">
+          <h3><span class="principle-badge">🔁</span> Consecvență</h3>
+          <p>Aceeași comandă, același gest, aceleași reguli de la toți membrii familiei. Comenzile inconsistente confundă câinele și încetinesc progresul.</p>
+        </div>
+        <div class="principle-card">
+          <h3><span class="principle-badge">📈</span> Crește dificultatea gradual</h3>
+          <p>Stăpânește exercițiul acasă, fără distrageri, înainte să încerci în curte, apoi pe stradă, apoi cu alți câini prin preajmă.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Explorează ghidul</h2>
+        <div class="sub">Alege o categorie pentru a începe.</div>
+        <div class="cat-grid" id="catGrid"></div>
+      </section>
+    </div>
+
+    <!-- COMMANDS -->
+    <div class="view" id="view-comenzi">
+      <section class="block">
+        <h2>Comenzi de bază</h2>
+        <div class="sub">Fundația oricărui câine ascultător.</div>
+        <div id="listComenzi"></div>
+      </section>
+    </div>
+
+    <!-- BEHAVIOR -->
+    <div class="view" id="view-comportament">
+      <section class="block">
+        <h2>Probleme de comportament</h2>
+        <div class="sub">Cauze, soluții și când e nevoie de un specialist.</div>
+        <div id="listComportament"></div>
+      </section>
+    </div>
+
+    <!-- BREEDS -->
+    <div class="view" id="view-rase">
+      <section class="block">
+        <h2>Dresaj pe tipuri de câini</h2>
+        <div class="sub">Fiecare tip are propriile instincte, energie și ritm de învățare.</div>
+        <div id="listRase"></div>
+      </section>
+    </div>
+
+    <!-- PUPPY -->
+    <div class="view" id="view-pui">
+      <section class="block">
+        <h2>Dresaj pentru pui</h2>
+        <div class="sub">Primele luni cruciale (0–6 luni).</div>
+        <div id="listPui"></div>
+      </section>
+    </div>
+
+    <!-- UTILE -->
+    <div class="view" id="view-utile">
+      <section class="block">
+        <h2>Instrumente utile</h2>
+        <div class="sub">Progres, jurnal, calculator, hrănire, checklist, prim ajutor și sfaturi sezoniere.</div>
+        <div class="subtabs-wrap at-start" id="subtabsWrap">
+        <div class="subtabs" id="utileSubtabs">
+          <button data-usec="progres" class="active">📊 Progres</button>
+          <button data-usec="jurnal">📓 Jurnal</button>
+          <button data-usec="calculator">🎂 Calculator vârstă</button>
+          <button data-usec="hranire">🍖 Hrănire</button>
+          <button data-usec="checklist">🛒 Checklist</button>
+          <button data-usec="vaccinari">💉 Vaccinări</button>
+          <button data-usec="primajutor">🩹 Prim ajutor</button>
+          <button data-usec="sezonier">🌦️ Sezonier</button>
+        </div>
+        </div>
+
+        <!-- Progres -->
+        <div class="usec active" id="usec-progres">
+          <div class="stat-row">
+            <div class="stat-card"><div class="num" id="statDone">0</div><div class="lbl">finalizate</div></div>
+            <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">lecții totale</div></div>
+            <div class="stat-card"><div class="num" id="statPct">0%</div><div class="lbl">parcurs</div></div>
+          </div>
+          <div id="progCats"></div>
+          <button class="reset-btn" id="resetBtn">Resetează progresul lecțiilor</button>
+        </div>
+
+        <!-- Jurnal de dresaj -->
+        <div class="usec" id="usec-jurnal">
+          <div class="calc-card" style="margin-bottom:16px;">
+            <div style="display:flex; gap:12px;">
+              <div style="flex:1; text-align:center;">
+                <div style="font-family:'Baloo 2'; font-size:24px; color:var(--forest); font-weight:800;" id="streakCount">🔥 0</div>
+                <div style="font-size:11px; color:var(--ink-soft); margin-top:2px;">zile la rând</div>
+              </div>
+              <div style="flex:1; text-align:center; border-left:1px solid var(--line);">
+                <div style="font-family:'Baloo 2'; font-size:24px; color:var(--forest); font-weight:800;" id="journalTotal">0</div>
+                <div style="font-size:11px; color:var(--ink-soft); margin-top:2px;">însemnări totale</div>
+              </div>
+            </div>
+          </div>
+          <div class="calc-card">
+            <div class="calc-field">
+              <label>Cum a mers sesiunea de azi?</label>
+              <select id="journalMood">
+                <option value="excelent">😄 Excelent</option>
+                <option value="bine">🙂 Bine</option>
+                <option value="dificil">😕 Dificil</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label>Ce ai exersat? (opțional)</label>
+              <select id="journalCategory">
+                <option value="">— alege o categorie —</option>
+                <option value="comenzi">Comenzi de bază</option>
+                <option value="comportament">Comportament</option>
+                <option value="rase">Specific rasei</option>
+                <option value="pui">Dresaj pui</option>
+                <option value="altele">Altele</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label>Notițe</label>
+              <textarea id="journalText" rows="3" placeholder="Ex: Am exersat „stai” 10 minute, a răspuns bine chiar și cu distrageri."></textarea>
+            </div>
+            <button class="calc-btn" id="journalSaveBtn">Salvează însemnarea de azi</button>
+          </div>
+          <div id="journalList" style="margin-top:16px;"></div>
+        </div>
+
+        <!-- Calculator vârstă -->
+        <div class="usec" id="usec-calculator">
+          <div class="calc-card">
+            <div class="calc-field">
+              <label>Mărimea câinelui (greutate adultă)</label>
+              <select id="calcSize">
+                <option value="mic">Mic — sub 10 kg</option>
+                <option value="mediu">Mediu — 10–25 kg</option>
+                <option value="mare">Mare — 25–45 kg</option>
+                <option value="urias">Foarte mare — peste 45 kg</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label>Vârsta câinelui (ani, poți folosi zecimale — ex. 1.5)</label>
+              <input type="number" id="calcAge" min="0" step="0.1" placeholder="ex. 3">
+            </div>
+            <button class="calc-btn" id="calcBtn">Calculează</button>
+            <div class="calc-result" id="calcResult">
+              <div class="big" id="calcBig">—</div>
+              <div class="lbl">ani umani (echivalent aproximativ)</div>
+              <div class="stage" id="calcStage">—</div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:14px;">Calculul este orientativ — rasa exactă, genetica și starea de sănătate influențează ritmul real de îmbătrânire. Pentru evaluarea reală a vârstei biologice, discută cu medicul veterinar.</div>
+        </div>
+
+        <!-- Hrănire -->
+        <div class="usec" id="usec-hranire">
+          <div id="listHranire"></div>
+          <div class="toxic-card">
+            <strong>⚠️ Alimente toxice — evită complet:</strong> ciocolată, struguri și stafide, ceapă și usturoi, xylitol (îndulcitor din gumă/dulciuri fără zahăr), alcool, cofeină, oase fierte (se pot despica și răni tractul digestiv), aluat crud cu drojdie.
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="usec" id="usec-checklist">
+          <div class="checklist-progress">
+            <div class="rowtop" style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+              <b style="font-family:'Baloo 2'; color:var(--ink);">Progres cumpărături</b>
+              <span style="color:var(--ink-soft);" id="checklistCount">0/0</span>
+            </div>
+            <div class="prog-bar"><span id="checklistBar" style="width:0%"></span></div>
+          </div>
+          <div id="checklistContent"></div>
+        </div>
+
+        <!-- Vaccinări & deparazitări -->
+        <div class="usec" id="usec-vaccinari">
+          <div id="listSanatate"></div>
+
+          <div class="check-cat" style="margin-top:22px;">Remindere personale</div>
+          <div class="calc-card">
+            <div class="calc-field">
+              <label>Ce trebuie să faci</label>
+              <input type="text" id="remTitle" placeholder="ex. Rapel vaccin combinat">
+            </div>
+            <div class="calc-field">
+              <label>Data</label>
+              <input type="date" id="remDate">
+            </div>
+            <button class="calc-btn" id="remAddBtn">Adaugă reminder</button>
+          </div>
+          <div class="callout" style="margin:14px 0;">Aplicația nu poate trimite notificări automate când e închisă. Adaugă reminderul și în calendarul telefonului (📅) ca să primești o alertă reală la momentul potrivit.</div>
+          <div id="reminderList"></div>
+        </div>
+
+        <!-- Prim ajutor -->
+        <div class="usec" id="usec-primajutor">
+          <div class="callout warn" style="margin-bottom:14px;">Acest ghid oferă informații generale, nu înlocuiește un medic veterinar. În orice urgență reală, sună imediat la o clinică veterinară.</div>
+          <div id="listPrimAjutor"></div>
+        </div>
+
+        <!-- Sezonier -->
+        <div class="usec" id="usec-sezonier">
+          <div id="listSezonier"></div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <nav class="tabbar">
+    <button data-view="home" class="active"><span class="ic">🏠</span><span class="lb">Acasă</span></button>
+    <button data-view="comenzi"><span class="ic">🐕</span><span class="lb">Comenzi</span></button>
+    <button data-view="comportament"><span class="ic">💬</span><span class="lb">Comportament</span></button>
+    <button data-view="rase"><span class="ic">🐕‍🦺</span><span class="lb">Rase</span></button>
+    <button data-view="pui"><span class="ic">🐶</span><span class="lb">Pui</span></button>
+    <button data-view="utile"><span class="ic">🧰</span><span class="lb">Utile</span></button>
+  </nav>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Caută o lecție (ex. lătrat, stai, husky...)">
+        <button id="searchClose">Închide</button>
+      </div>
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="sheet" id="sheet"></div>
+  </div>
+
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+const DATA = {
+  comenzi: {
+    label:"Comenzi de bază", icon:"🐕",
+    items:[
+      {id:"stai", title:"Stai", emoji:"🪑", time:"5–10 min", level:"Ușor",
+        why:"„Stai” e prima comandă de autocontrol: pregătește câinele pentru „rămâi”, pentru salutul politicos la vizitatori și pentru siguranță în trafic.",
+        steps:[
+          "Ține o recompensă lângă nasul câinelui, apoi ridic-o încet deasupra capului lui.",
+          "Pe măsură ce capul urmărește recompensa în sus, șoldurile coboară natural — exact înainte să stea jos, spune „Stai”.",
+          "În momentul în care șezutul atinge podeaua, recompensează imediat și laudă cu voce blândă.",
+          "Repetă de 5–8 ori pe sesiune. După 2–3 sesiuni reușite, adaugă gestul mâinii (palma în sus) fără recompensă vizibilă în mână.",
+          "Crește dificultatea: exersează în alte camere, apoi afară, apoi cu ușoare distrageri."
+        ],
+        mistakes:["Apăsarea pe spate — poate speria sau incomoda câinele.","Repetarea comenzii de mai multe ori înainte să reacționeze.","Recompensă întârziată — câinele nu mai leagă acțiunea de răsplată."],
+        note:"Odată învățată solid înăuntru, exersează „stai” înainte de masă sau înainte de a-i pune lesa — devine un ritual natural."
+      },
+      {id:"culcat", title:"Culcat", emoji:"🛌", time:"10–15 min", level:"Mediu",
+        why:"Poziția „culcat” calmează câinele și e baza pentru „rămâi” pe termen lung sau pentru relaxare în locuri publice.",
+        steps:[
+          "Pornește din poziția „stai”. Ține o recompensă la nivelul nasului, apoi coboar-o încet spre podea, între lăbuțele din față.",
+          "Câinele va urma mâna în jos; când coatele ating podeaua, spune „Culcat” și recompensează.",
+          "Dacă rămâne în picioare și doar se apleacă, trage recompensa ușor înainte pe podea (nu în sus) ca să-l ademenești complet jos.",
+          "Repetă, apoi adaugă gestul (degetul arătând spre podea) fără mâncare în mână.",
+          "Exersează durata: cere „culcat”, așteaptă 2 secunde înainte de recompensă, apoi crește treptat la 10, 30, 60 de secunde."
+        ],
+        mistakes:["Forțarea fizică a câinelui în jos — poate crea asociere negativă.","Trecerea prea rapidă la durate lungi.","Antrenament pe suprafață rece sau incomodă — folosește un covoraș."],
+        note:"Câinii dominanți sau nesiguri pot evita poziția culcat (îi face vulnerabili). Fii extra răbdător și generos cu laudele la început."
+      },
+      {id:"ramai", title:"Rămâi", emoji:"✋", time:"2–3 săptămâni", level:"Mediu-avansat",
+        why:"Esențială pentru siguranță: la ușă, lângă stradă, sau când vrei să pui bolul de mâncare jos fără să sară.",
+        steps:[
+          "Din „stai” sau „culcat”, arată palma și spune „Rămâi”, apoi așteaptă doar 1–2 secunde înainte de recompensă.",
+          "Crește progresiv timpul, dar variază-l (3s, 1s, 5s, 2s) ca să nu anticipeze un tipar fix.",
+          "Adaugă apoi distanța: după ce stai lângă el, fă un pas înapoi, revino, recompensează. Crește distanța treptat.",
+          "Combină timp + distanță abia după ce fiecare element e stăpânit separat.",
+          "Eliberează-l mereu cu un cuvânt clar de final, de exemplu „Liber!”, ca să știe exact când poate să se ridice."
+        ],
+        mistakes:["Creșterea simultană a timpului ȘI distanței — prea multă presiune deodată.","Lipsa unui cuvânt clar de eliberare — câinele se ridică oricând vrea el.","Chemarea câinelui către tine în timp ce e la „rămâi” — asta e „vino”, o comandă diferită."],
+        note:"Dacă se ridică prea devreme, nu-l certa — pur și simplu reia exercițiul cu un timp/distanță mai mic."
+      },
+      {id:"vino", title:"Vino (chemarea)", emoji:"🏃", time:"3–4 săptămâni", level:"Mediu",
+        why:"Cea mai importantă comandă pentru siguranță — un recall solid poate preveni accidente grave.",
+        steps:[
+          "Exersează mereu întâi în spațiu închis, fără distrageri (living, curte împrejmuită).",
+          "Ghemuiește-te, folosește un ton vesel și spune „Vino!” o singură dată, cu brațele deschise.",
+          "Când ajunge la tine, oferă o recompensă excelentă (ceva ce nu primește oricând) și multă laudă.",
+          "Niciodată nu chema câinele pentru ceva neplăcut (baie, ceartă) — asociază „vino” exclusiv cu lucruri bune.",
+          "Practică apoi cu o lesă lungă (5–10m) afară, în zone cu distrageri ușoare, crescând treptat dificultatea."
+        ],
+        mistakes:["Folosirea comenzii pentru a-l certa la final — distruge asocierea pozitivă.","Chemarea repetată fără consecință — „Vino, vino, VINO!” îi arată că poate ignora.","Trecerea direct la spații deschise fără lesă lungă de siguranță."],
+        note:"Dacă nu vine, nu fugi după el (devine joc de urmărire). Mai bine fugi tu în direcția opusă, vesel — instinctul de a te urma se activează."
+      },
+      {id:"lapicior", title:"La picior (mers fără tras)", emoji:"🚶", time:"3–6 săptămâni", level:"Avansat",
+        why:"Face plimbările plăcute pentru amândoi și previne rănirea gâtului sau smulgerea lesei din mână.",
+        steps:[
+          "Pornește înăuntru sau în curte, fără distrageri. Ține recompense în mâna de lângă câine.",
+          "Fă un pas; dacă rămâne lângă piciorul tău, recompensează imediat. Dacă trage, oprește-te complet.",
+          "Regula cheie: lesa se întinde = plimbarea se oprește. Reia mersul doar când lesa e din nou relaxată.",
+          "Adaugă comanda verbală „La picior” chiar înainte de a porni, ca semnal.",
+          "Crește treptat distanța și mediul: curte → stradă liniștită → zonă cu mai multă activitate."
+        ],
+        mistakes:["Folosirea lesei retractabile în faza de învățare — încurajează tragerea.","Continuarea mersului cât timp câinele trage — îi întărește exact comportamentul nedorit.","Așteptări prea mari prea repede pe stradă aglomerată."],
+        note:"Un ham antitracțiune (front-clip) poate ajuta temporar, dar nu înlocuiește exercițiul — e un suport, nu o soluție permanentă."
+      },
+      {id:"lasa", title:"Lasă / Nu atinge", emoji:"🚫", time:"1–2 săptămâni", level:"Ușor-mediu",
+        why:"Previne ingerarea de obiecte periculoase sau resturi găsite pe stradă.",
+        steps:[
+          "Ține o recompensă în pumn închis și lasă-l să adulmece/lingă. Când renunță și se retrage, spune „Lasă” și deschide pumnul ca recompensă.",
+          "Repetă cu recompensa pe podea, acoperind-o cu palma dacă încearcă să o ia.",
+          "Treci la recompensă vizibilă, dar neacoperită — corectează cu „Lasă” dacă se apropie, recompensează din cealaltă mână când se abține.",
+          "Generalizează cu obiecte din casă (papuci, jucării) și, sub supraveghere, afară."
+        ],
+        mistakes:["Smulgerea obiectului din gură — poate încuraja „paza resurselor”.","Folosirea aceleiași comenzi pentru „dă-mi obiectul din gură” (aceea e „Dă” — o comandă separată).","Certarea după ce a apucat deja obiectul, în loc să previi."],
+        note:"Antrenează separat comanda „Dă” (schimb: oferă o recompensă mai bună în schimbul obiectului din gură) pentru situațiile în care a apucat deja ceva."
+      },
+      {id:"da", title:"Dă (predarea obiectului)", emoji:"🤲", time:"1–2 săptămâni", level:"Ușor",
+        why:"Complementară comenzii „Lasă” — îl învață să renunțe voluntar la un obiect deja aflat în gură, esențial dacă apucă ceva periculos.",
+        steps:[
+          "Oferă-i o jucărie de valoare mică; când o are în gură, arată o recompensă mult mai bună lângă nasul lui.",
+          "În clipa în care deschide gura să ia recompensa, spune „Dă” și prinde jucăria eliberată.",
+          "Înapoiază-i imediat jucăria de câteva ori la rând, ca să învețe că „Dă” nu înseamnă mereu „gata jocul”.",
+          "Crește treptat valoarea obiectelor cu care exersezi, ajungând și la obiecte pe care le prețuiește mult.",
+          "Exersează și fără schimb vizibil de recompensă, doar cu laudă, pentru situațiile de urgență."
+        ],
+        mistakes:["Smulgerea obiectului fără schimb — învață câinele să țină strâns sau să fugă cu el.","Folosirea comenzii doar când se termină jocul — asociază „Dă” cu ceva neplăcut.","Exersarea directă cu obiecte foarte prețuite înainte de a stăpâni bine comanda cu jucării simple."],
+        note:"Dacă are tendința să păzească resursele (rigid, mârâie când te apropii de mâncare/jucării), lucrează cu un instructor canin — nu forța fizic."
+      },
+      {id:"adu", title:"Adu (fetch/aport)", emoji:"🎾", time:"2–4 săptămâni", level:"Mediu",
+        why:"Excelentă pentru consum de energie fizică și mentală, mai ales la rasele active — transformă o mingiuță în antrenament complet.",
+        steps:[
+          "Alege o jucărie preferată, dedicată doar acestui joc, ca să rămână atractivă.",
+          "Aruncă jucăria la distanță mică, lasă-l să o ia, apoi cheamă-l vesel spre tine.",
+          "Când ajunge cu jucăria, exersează comanda „Dă” (vezi lecția anterioară) pentru a o preda înapoi.",
+          "Recompensează predarea, nu doar aducerea — mulți câini aduc, dar refuză să elibereze jucăria.",
+          "Crește treptat distanța aruncării, apoi introdu comanda verbală „Adu” chiar înainte de aruncare."
+        ],
+        mistakes:["Fuga după câine ca să recuperezi jucăria — se transformă în joc de urmărire, nu în „adu”.","Aruncarea la distanțe mari de la început — riscă să nu mai revină spre tine.","Renunțarea rapidă dacă preferă doar să alerge după minge, fără să o aducă — construiește pasul „Dă” separat, apoi combină."],
+        note:"Nu toți câinii au instinct natural de aport — la unele rase e nevoie de mai multă răbdare și pași mai mici; nu e un eșec al tău sau al lui."
+      },
+      {id:"loc", title:"Du-te la loc (covoraș/pătuț)", emoji:"🧺", time:"2–3 săptămâni", level:"Mediu",
+        why:"Îi oferă un loc propriu unde să se retragă și să stea calm — util la mese, când ai musafiri sau vrei liniște în casă.",
+        steps:[
+          "Așază un covoraș sau pătuț identificabil clar; aruncă o recompensă pe el ca să-l atragă acolo.",
+          "Când pune lăbuțele pe covoraș, spune „Loc” și recompensează; repetă până se așază natural acolo.",
+          "Adaugă apoi „Stai” sau „Culcat” pe covoraș, crescând treptat timpul petrecut acolo.",
+          "Exersează comanda de la distanțe tot mai mari, trimițându-l spre covoraș cu gestul mâinii.",
+          "Folosește covorașul consecvent la aceleași momente (masa familiei, sosirea musafirilor) ca să devină rutină."
+        ],
+        mistakes:["Mutarea frecventă a covorașului — pierde asocierea locului fix.","Chemarea de pe covoraș pentru lucruri neplăcute (baie, unghii) — asociază locul cu stres.","Sărirea directă la distanțe mari fără exersare progresivă de aproape."],
+        note:"Un covoraș cu textură distinctă (nu un obiect obișnuit din casă) ajută câinele să recunoască rapid semnalul vizual."
+      },
+      {id:"asteapta", title:"Așteaptă (la uși și mașină)", emoji:"🚪", time:"1–2 săptămâni", level:"Ușor-mediu",
+        why:"Diferă de „Rămâi” prin scop: „Așteaptă” înseamnă o pauză scurtă înainte de a trece pragul unei uși sau a coborî din mașină — previne fuga bruscă spre stradă.",
+        steps:[
+          "La ușă, pune lesa și pune mâna pe clanță; dacă se așază sau rămâne calm, spune „Așteaptă”.",
+          "Deschide ușa puțin; dacă se repede, închide-o imediat și reia — deschiderea completă vine doar cât timp rămâne calm.",
+          "Eliberează-l cu un cuvânt clar („Liber” sau numele lui) doar când vrei tu, nu când decide el.",
+          "Exersează identic la portiera mașinii, un context cu riscuri similare de fugă spre trafic.",
+          "Practică zilnic la ieșirile obișnuite (plimbare, curte) până devine automatism."
+        ],
+        mistakes:["Deschiderea ușii complet chiar dacă e agitat — îi întărește ideea că agitația funcționează.","Folosirea „Rămâi” și „Așteaptă” interschimbabil — clarifică-le ca reguli distincte pentru consecvență.","Lipsa cuvântului de eliberare — creează confuzie despre când poate trece pragul."],
+        note:"Această comandă este una dintre cele mai importante pentru siguranța rutieră a câinelui, alături de „Vino”."
+      },
+      {id:"dalaba", title:"Dă laba", emoji:"🐾", time:"3–5 zile", level:"Ușor",
+        why:"Un truc simplu, excelent pentru construirea legăturii cu tine și pentru obișnuirea cu atingerea lăbuțelor (util la tăiatul unghiilor).",
+        steps:[
+          "Așază câinele în poziția „Stai”, apoi ține o recompensă în pumn închis, la nivelul lăbuței.",
+          "Cel mai adesea va încerca să atingă pumnul cu laba din curiozitate — în acel moment, spune „Laba” și recompensează.",
+          "Dacă nu încearcă spontan, atinge ușor spatele labei din față — mulți câini o ridică reflex; recompensează imediat.",
+          "Repetă de 5-6 ori pe sesiune, apoi introdu gestul mâinii întinse fără recompensă ascunsă.",
+          "Odată stăpânit cu o labă, poți învăța „Cealaltă labă” ca variație distinctă."
+        ],
+        mistakes:["Ridicarea forțată a labei — reduce entuziasmul și poate crea disconfort.","Prea multe repetări într-o sesiune — e un truc simplu, dar tot beneficiază de pauze.","Confuzia cu comanda „Stai” dacă cerințele nu sunt clar separate."],
+        note:"Trucurile simple ca acesta sunt ideale pentru sesiuni scurte în zilele în care câinele (sau tu) sunteți mai obosiți."
+      }
+    ]
+  },
+  comportament:{
+    label:"Probleme de comportament", icon:"💬",
+    items:[
+      {id:"latrat", title:"Lătrat excesiv", emoji:"📢", time:"2–4 săptămâni", level:"Mediu",
+        causes:["Plictiseală sau lipsă de mișcare","Alertă la zgomote/vizitatori","Anxietate de separare","Cerere de atenție"],
+        doList:["Identifică declanșatorul exact (sonerie, alți câini, singurătate) înainte de a alege soluția.","Recompensează liniștea: când tace după 2–3 lătrături, marchează și recompensează imediat.","Asigură mișcare zilnică suficientă — un câine obosit fizic latră mai puțin.","Învață comanda „Destul” — lasă-l să latre de 2-3 ori, apoi cere liniște și recompensează tăcerea."],
+        dontList:["Nu striga la el — pentru câine, vocea ta ridicată poate părea că „lătrați împreună”.","Nu ignora complet lătratul de anxietate — are nevoie de altă abordare, nu de stingere.","Nu folosi zgărzi de șoc sau spray fără îndrumarea unui specialist — pot crește anxietatea."],
+        vet:"Dacă lătratul e însoțit de distrugeri, salivație excesivă sau panică la plecarea ta, ia legătura cu un instructor canin sau comportamentalist — poate fi anxietate de separare."
+      },
+      {id:"trage", title:"Trage tare de lesă", emoji:"🦮", time:"3–6 săptămâni", level:"Mediu",
+        causes:["Exces de energie neconsumată","Curiozitate față de mediu (mirosuri, alți câini)","Nu a fost învățat altceva — tragerea „funcționează” (îl duce unde vrea)"],
+        doList:["Aplică regula „lesa întinsă = oprire” din lecția „La picior”, consecvent, de fiecare dată.","Oferă timp de adulmecat liber, controlat, ca recompensă pentru mers frumos alături de tine.","Ia-o cu foarte mici — 5-10 minute de exercițiu concentrat, nu toată plimbarea deodată.","Folosește un ham antitracțiune ca sprijin temporar în timpul învățării."],
+        dontList:["Nu trage tu înapoi de lesă cu putere — creează un „joc de tragere” reciproc.","Nu folosi zgardă cu țepi sau electrică fără recomandarea unui specialist calificat.","Nu te aștepta la mers perfect chiar de la prima plimbare — e un proces gradual."],
+        vet:"Dacă tragerea e însoțită de agresivitate spre alți câini sau oameni, nu doar entuziasm, apelează la un specialist în comportament canin."
+      },
+      {id:"sare", title:"Sare pe oameni", emoji:"🦘", time:"2–3 săptămâni", level:"Ușor-mediu",
+        causes:["Bucurie/entuziasm la salut","Cerere de atenție prin contact fizic","A fost recompensat accidental în trecut (atenție = chiar dacă e ceartă)"],
+        doList:["Întoarce-te cu spatele și ignoră complet când sare — nicio privire, nicio vorbă, niciun contact.","În clipa în care are toate 4 lăbuțele pe sol, întoarce-te, laudă și recompensează.","Exersează cu un membru al familiei ca „vizitator” controlat, repetând scenariul de salut.","Învață o comportament alternativ, ca „Stai”, pentru salut — recompensează poziția jos, nu săritura."],
+        dontList:["Nu împinge cu genunchiul sau cu mâinile — pentru multe câinii asta e tot o formă de joacă/atenție.","Nu certa verbal în timp ce sare — orice reacție e atenție, deci recompensă.","Nu permite săritura „doar cu familia, dar nu cu musafirii” — regula trebuie să fie aceeași mereu."],
+        vet:"De obicei se rezolvă prin antrenament constant; consultă un instructor dacă săritura vine cu mușcat sau agitație greu de controlat."
+      },
+      {id:"muscat", title:"Mușcatul jucăuș (la adult)", emoji:"🦷", time:"2–4 săptămâni", level:"Mediu",
+        causes:["Joacă prea intensă, fără limite clare","Frustrare sau suprastimulare","Obicei necorectat din perioada de pui"],
+        doList:["Oprește imediat jocul și retrage atenția (ridică-te, întoarce-te cu spatele) când dinții ating pielea.","Oferă constant o jucărie potrivită ca alternativă atunci când vrea să muște.","Recompensează gura blândă/lejeră în timpul jocului.","Reia jocul doar după câteva secunde de calm."],
+        dontList:["Nu-l lovi peste bot sau nas — poate crea frică sau agresivitate defensivă.","Nu continua jocul dur sperând că „se descarcă” — de obicei intensifică mușcatul.","Nu folosi mâinile ca jucărie de-a lungul antrenamentului cu puiul — se generalizează greu la adult."],
+        vet:"Dacă mușcăturile lasă urme, sunt însoțite de mârâit susținut sau rigiditate corporală, contactează urgent un comportamentalist canin certificat."
+      },
+      {id:"anxietate", title:"Anxietate de separare", emoji:"😰", time:"4–8 săptămâni", level:"Avansat",
+        causes:["Atașament excesiv / lipsă de obișnuință cu singurătatea","Schimbare de rutină, mutare, sau pierderea unui membru al familiei/altui animal","Lipsă de exercițiu mental și fizic"],
+        doList:["Exersează plecări scurte (30 secunde, apoi minute), fără ceremonie la plecare sau sosire.","Asociază plecarea ta cu ceva plăcut: un jucărie cu mâncare (kong) oferită doar atunci când pleci.","Construiește treptat timpul de absență, pas cu pas — nu sări direct la ore întregi.","Asigură mișcare și stimulare mentală solidă înainte de a pleca de acasă."],
+        dontList:["Nu pedepsi distrugerile găsite la întoarcere — câinele nu face legătura, doar se sperie.","Nu prelungi la nesfârșit despărțirile emoționale („la revedere” lung) — crește anxietatea.","Nu sări etape — expunerea prea rapidă la absențe lungi poate agrava problema."],
+        vet:"Anxietatea de separare moderată-severă răspunde mult mai bine cu ghidarea unui comportamentalist canin, uneori în colaborare cu un medic veterinar."
+      },
+      {id:"agresivitate", title:"Reactivitate la alți câini", emoji:"⚠️", time:"Variabil, cu specialist", level:"Avansat",
+        causes:["Frică sau experiență negativă anterioară","Socializare insuficientă în perioada de pui","Frustrare la lesă (vrea să interacționeze, dar e reținut)"],
+        doList:["Menține distanța la care câinele rămâne calm („sub prag”) și recompensează calmul la vederea altui câine.","Redirecționează atenția către tine cu o comandă cunoscută înainte să reacționeze.","Crește expunerea foarte gradual, doar cu supraveghere profesională dacă reacția e intensă.","Colaborează cu un comportamentalist canin — reactivitatea reală necesită plan individualizat."],
+        dontList:["Nu forța interacțiunea directă „ca să se obișnuiască” — poate agrava frica.","Nu certa mârâitul — e o comunicare importantă; suprimarea lui poate duce la mușcat fără avertisment.","Nu evita complet ieșirile — izolarea totală nu rezolvă problema pe termen lung."],
+        vet:"Reactivitatea la alți câini este una dintre cele mai frecvente probleme care necesită un specialist — nu ezita să ceri ajutor calificat."
+      },
+      {id:"distrugere", title:"Distruge obiecte din casă", emoji:"🛋️", time:"2–4 săptămâni", level:"Mediu",
+        causes:["Plictiseală / energie neconsumată","Anxietate de separare (dacă apare doar cât ești plecat)","Perioadă de dentiție (la pui) sau nevoie naturală de a roade"],
+        doList:["Oferă jucării de ros potrivite și rotește-le săptămânal ca să rămână interesante.","Asigură minim 30-60 min de mișcare/stimulare zilnică, adaptat rasei și vârstei.","Limitează accesul la zone/obiecte de valoare până la antrenament complet (uși închise, țarc).","Antrenează comanda „Lasă” pentru obiecte casnice."],
+        dontList:["Nu certa la întoarcere pentru o distrugere petrecută cu ore în urmă — nu face legătura.","Nu lăsa acces liber prin toată casa înainte de a avea încredere completă în comportamentul lui.","Nu ignora tiparul dacă distrugerea apare mereu doar în absența ta — verifică anxietatea de separare."],
+        vet:"Distrugere însoțită de urină/scaun în absență, salivație excesivă sau tentative de evadare indică posibilă anxietate — cere sfatul unui specialist."
+      }
+    ]
+  },
+  rase:{
+    label:"Dresaj pe tipuri de câini", icon:"🐕‍🦺",
+    items:[
+      {id:"ciobanesti", title:"Ciobănești și câini de turmă", emoji:"🐑", time:"60–90 min/zi", level:"Foarte ușor de dresat",
+        breeds:"Ciobănesc German, Border Collie, Ciobănesc Belgian Malinois, Ciobănesc Românesc Mioritic/Carpatin, Australian Shepherd.",
+        why:"Sunt printre cele mai inteligente și mai antrenabile rase — dar exact inteligența asta se întoarce împotriva ta dacă nu le oferi suficientă activitate mentală, nu doar fizică.",
+        traits:["Foarte inteligenți, învață comenzi noi în câteva repetări.","Instinct puternic de turmă — pot „aduna” copii, biciclete sau alți câini prin nasul/gonitul ușor.","Energie fizică și mentală foarte ridicată.","Extrem de atașați de „stăpânul turmei” — devotament mare."],
+        tips:["Combină dresajul de comenzi cu jocuri de agilitate, frisbee sau sporturi canine — plictiseala e principalul lor dușman.","Canalizează instinctul de turmă spre jocuri structurate (aport, urmărirea unei jucării) în loc să-l lași necontrolat spre copii sau bicicliști.","Introdu comenzi avansate rapid — se plictisesc dacă rămân doar la „stai” și „culcat” multă vreme.","Oferă puzzle-uri și jucării interactive cu mâncare pentru stimulare mentală în zilele mai liniștite."],
+        watch:["Fără suficientă activitate, dezvoltă comportamente compensatorii: lătrat excesiv, distrugeri, gonit obsesiv al propriei cozi.","Nu confunda inteligența cu maturitatea emoțională — tot au nevoie de răbdare și pași graduali ca orice câine.","Sensibili la tensiune din casă — pot deveni anxioși dacă atmosfera e agitată."],
+        note:"Un ciobănesc plictisit e motorul din spatele multor „probleme de comportament” — de multe ori soluția reală e mai multă activitate, nu mai multă disciplină."
+      },
+      {id:"terieri", title:"Terieri", emoji:"🐾", time:"45–60 min/zi", level:"Mediu — necesită consecvență",
+        breeds:"Jack Russell Terrier, Fox Terrier, American Staffordshire Terrier, Bull Terrier, West Highland White Terrier.",
+        why:"Au fost crescuți inițial pentru vânătoare de rozătoare — sunt curajoși, independenți și au propria părere despre cum ar trebui să decurgă lucrurile.",
+        traits:["Instinct de pradă foarte puternic — reacție rapidă la mișcări bruște (pisici, veverițe, obiecte mici).","Încăpățânare naturală, gândesc independent mai mult decât rasele de turmă.","Energie concentrată, exploziv-intensă, în rafale scurte.","Voce puternică — mulți sunt lătrători entuziaști."],
+        tips:["Ține sesiunile de dresaj scurte și foarte antrenante — recompense de calitate mare, cu multă variație.","Exersează „Lasă” și „Vino” intens, ținând cont de instinctul de pradă puternic — esențial în zone cu animale mici.","Oferă activități care le solicită „vânătoarea”: jucării cu scârțâit, jocuri de căutare a recompenselor ascunse.","Fii consecvent și calm — încăpățânarea lor cedează la răbdare, nu la conflict de forță."],
+        watch:["Nu-i lăsa liberi fără lesă în zone cu trafic sau animale mici, chiar dacă recall-ul pare solid — instinctul poate prelua controlul brusc.","Metodele dure de corecție cresc adesea încăpățânarea în loc să o reducă.","Pot fi teritoriali cu jucăriile/mâncarea — lucrează de mic la schimbul de obiecte (comanda „Dă”)."],
+        note:"Un terrier „încăpățânat” e adesea doar un câine care nu găsește motivația suficient de interesantă — schimbă recompensa înainte să schimbi metoda."
+      },
+      {id:"vanatoare", title:"Câini de vânătoare și aport", emoji:"🦆", time:"60 min/zi", level:"Foarte ușor de dresat",
+        breeds:"Labrador Retriever, Golden Retriever, Cocker Spaniel, Pointer, Braco German.",
+        why:"Crescuți să lucreze strâns cu oamenii și motivați puternic de mâncare — printre cele mai ușor de dresat rase, ideale pentru începători.",
+        traits:["Motivație foarte mare pentru mâncare — recompensele funcționează excelent.","Gură activă — tendință de a duce obiecte în bot, inclusiv lucruri nepotrivite.","Dornici să placă — răspund rapid la lauda verbală.","Energie ridicată în tinerețe, care se echilibrează spre 2-3 ani."],
+        tips:["Exploatează motivația pentru mâncare, dar controlează porțiile — sunt predispuși la supraalimentare și obezitate.","Canalizează nevoia de „a duce lucruri în gură” prin jocul de aport structurat, cu comanda „Dă” bine exersată.","Introdu comenzi de autocontrol devreme (rămâi, așteaptă) — entuziasmul lor natural poate deveni agitație necontrolată dacă nu exersezi calmul.","Sunt ideali pentru sporturi canine de aport, urmărire de mirosuri sau chiar terapie — canalizează entuziasmul spre activități structurate."],
+        watch:["Tendința de supraalimentare — ajustează mesele principale dacă folosești multe recompense la antrenament.","Pot înghiți obiecte nepotrivite din exces de entuziasm — supraveghere atentă mai ales la pui.","Eticheta de „ușor de dresat” nu înseamnă „fără nevoie de exercițiu” — tot au nevoie de mișcare zilnică serioasă."],
+        note:"Aceste rase iartă cel mai ușor greșelile unui stăpân la prima experiență — un motiv bun pentru care sunt recomandate frecvent ca prim câine."
+      },
+      {id:"molosi", title:"Molosi și câini de pază", emoji:"🛡️", time:"45–75 min/zi", level:"Mediu — necesită experiență",
+        breeds:"Rottweiler, Cane Corso, Ciobănesc Caucazian, Ciobănesc Carpatin de pază, Boxer.",
+        why:"Rase puternice fizic, crescute pentru protecție și gardă — au nevoie de socializare intensivă și un stăpân calm, consecvent, din prima lună acasă.",
+        traits:["Forță fizică mare — chiar și tras ușor de lesă poate fi greu de controlat fără antrenament.","Instinct natural de protecție a teritoriului și a familiei.","Maturizare emoțională mai lentă decât fizică — un exemplar de 8 luni poate arăta adult, dar se comportă încă precum un adolescent.","Loialitate profundă, dar pot fi rezervați cu străinii dacă nu sunt socializați corect."],
+        tips:["Prioritizează socializarea intensivă în perioada de pui (vezi lecția „Fereastra de socializare”) — esențială pentru un adult echilibrat.","Exersează comenzi de bază cu multă consecvență de la vârstă mică, cât forța fizică e încă gestionabilă.","Folosește ham antitracțiune și lesă solidă din prima ieșire — previi obiceiuri greu de corectat mai târziu.","Recompensează calmul în prezența vizitatorilor, în loc să aștepți să reacționeze și abia apoi să corectezi."],
+        watch:["Nu confunda instinctul de protecție natural cu antrenamentul de „pază” agresivă — cel din urmă necesită un specialist calificat, nu tutoriale generale.","Lipsa socializării în primele luni e cea mai frecventă cauză de probleme grave de comportament la aceste rase, la maturitate.","Forța fizică mare face ca greșelile de dresaj (tras de lesă, sărit) să aibă consecințe mai mari — investește în antrenament profesionist devreme dacă ai dubii."],
+        note:"Pentru aceste rase, recomandăm cu tărie cel puțin câteva ședințe cu un instructor canin certificat, mai ales în primele 6 luni."
+      },
+      {id:"nordici", title:"Nordici de sanie", emoji:"❄️", time:"90+ min/zi", level:"Dificil — recall aproape imposibil fără lesă",
+        breeds:"Husky Siberian, Alaskan Malamute, Samoyed.",
+        why:"Crescuți să alerge independent, la distanță de conducător, ore în șir — sunt construiți genetic să ignore comenzi de recall atunci când există o distragere interesantă.",
+        traits:["Nivel de energie extrem de ridicat, cu rezistență foarte mare.","Instinct de evadare puternic — sar garduri, sapă pe sub ele, deschid porți.","Instinct de pradă ridicat spre animale mici.","Vocalizare specifică (urlă, nu doar latră) — comunicare foarte expresivă."],
+        tips:["Acceptă din start că recall-ul liber, fără lesă, e nerealist pentru majoritatea exemplarelor — investește într-o curte foarte bine împrejmuită sau lesă lungă pentru spații deschise.","Oferă activități care simulează trasul/alergatul: canicross, bikejoring, sau minim alergări lungi zilnice.","Folosește puzzle-uri alimentare și antrenament de urmărire a mirosurilor pentru stimulare mentală — o minte ocupată reduce evadările.","Verifică frecvent gardul curții — sunt experți în identificarea celei mai mici breșe."],
+        watch:["Nu te baza pe zgardă electrică sau pedepse pentru a controla instinctul de evadare/vânătoare — de obicei nu funcționează pe termen lung la aceste rase.","Subestimarea nevoii de mișcare e cea mai frecventă greșeală — un husky sub-exercitat devine distructiv rapid.","Coabitarea cu pisici sau animale mici necesită introducere foarte atentă, uneori supraveghere permanentă."],
+        note:"Dacă locuiești la bloc, fără acces ușor la spații mari de alergare zilnică, gândește-te serios dacă aceste rase se potrivesc stilului tău de viață."
+      },
+      {id:"companie-mica", title:"Companie mică / toy", emoji:"🎀", time:"20–30 min/zi", level:"Ușor, cu atenție la socializare",
+        breeds:"Chihuahua, Pomeranian, Yorkshire Terrier, Bichon Maltez.",
+        why:"Mărimea mică face ca proprietarii să treacă adesea cu vederea nevoia de dresaj — rezultatul e frecvent „sindromul câinelui mic”: comportamente pe care nu le-ar accepta de la un câine mare.",
+        traits:["Energie mentală ridicată, în ciuda dimensiunii fizice mici.","Tendință spre lătrat frecvent — vocea e principalul lor „instrument” de comunicare.","Fragilitate fizică mai mare — necesită manipulare blândă, mai ales la pui.","Pot deveni posesivi cu stăpânul dacă sunt purtați constant în brațe fără a merge pe propriile picioare."],
+        tips:["Aplică aceleași reguli de dresaj ca la un câine mare — consecvența contează la fel de mult, indiferent de mărime.","Lasă-l să meargă pe propriile picioare cât mai des, în loc să-l porți constant — construiește încredere și independență.","Socializează activ cu alți câini (chiar mai mari, în condiții sigure) pentru a preveni frica sau agresivitatea defensivă.","Exersează comanda „Destul” pentru lătrat de la vârstă mică — devine un obicei greu de schimbat la maturitate dacă e ignorat."],
+        watch:["Nu accepta comportamente (sărit, mârâit, apucat de haine) doar pentru că „e mic și nu doare” — se pot agrava în timp.","Evită jocul dur cu mâinile — oasele fine ale raselor toy sunt mai predispuse la accidentări.","Nu sări peste socializare doar pentru că pare „suficient de protejat” fiind purtat constant — au nevoie de aceleași experiențe ca orice câine."],
+        note:"„Sindromul câinelui mic” nu e vina câinelui — e rezultatul direct al lipsei acelorași reguli aplicate raselor mari. Corectează asta din prima lună."
+      },
+      {id:"brahicefali", title:"Rase brahicefale (bot scurt)", emoji:"😮‍💨", time:"20–40 min/zi, în tronsoane scurte", level:"Ușor, cu limite fizice",
+        breeds:"Bulldog Francez, Bulldog Englez, Mops (Pug), Shih Tzu.",
+        why:"Structura botului scurt le limitează respirația și toleranța la efort și căldură — dresajul trebuie adaptat capacităților fizice, nu doar celor mentale.",
+        traits:["Toleranță scăzută la căldură și la efort fizic prelungit — se supraîncălzesc rapid.","Motivați puternic de mâncare, ceea ce ajută mult la dresaj.","Pot fi încăpățânați, dar rareori din agresivitate — mai des din confort/lene.","Respirație zgomotoasă normală pentru rasă — nu confunda cu oboseală excesivă, dar fii atent la semne reale de disconfort."],
+        tips:["Programează sesiunile de dresaj și plimbările în orele răcoroase ale zilei (dimineața devreme, seara).","Ține sesiunile foarte scurte (5 minute) — se plictisesc și obosesc fizic repede, dar recuperează rapid pentru o sesiune nouă.","Exploatează motivația pentru mâncare — funcționează excelent pentru comenzi de bază.","Folosește ham (nu zgardă) pentru a proteja zona gâtului/traheea, mai sensibilă la aceste rase."],
+        watch:["Oprește orice activitate fizică imediat la semne de gâfâit excesiv, limbă foarte întinsă sau clătinare — riscul de hipertermie e real la aceste rase.","Nu insista cu exerciții fizice intense în zilele călduroase, indiferent cât de „motivat” pare câinele.","Excesul de recompense alimentare poate duce rapid la obezitate, agravând și mai mult problemele respiratorii — dozează cu grijă."],
+        note:"Pentru aceste rase, dresajul mental (comenzi, puzzle-uri) poate compensa parțial limitările la efortul fizic intens."
+      },
+      {id:"gigant", title:"Rase gigant, cu maturare lentă", emoji:"🐻", time:"30–45 min/zi (efort controlat)", level:"Ușor mental, dar necesită răbdare fizică",
+        breeds:"Saint Bernard, Mastiff, Ciobănesc Carpatin de talie mare, Leonberger.",
+        why:"Cresc fizic foarte repede, dar se maturizează comportamental abia pe la 2-3 ani — un exemplar imens se poate comporta încă precum un pui la nivel emoțional.",
+        traits:["Creștere osoasă rapidă în primul an — activitatea fizică intensă (sărituri, scări, alergat susținut) trebuie limitată pentru a proteja articulațiile.","Temperament de obicei calm și blând, în ciuda dimensiunii impresionante.","Forță fizică foarte mare chiar la vârstă tânără — un exemplar de 6 luni poate fi deja greu de controlat fizic dacă trage de lesă.","Nevoie de spațiu generos pentru a se mișca liber acasă."],
+        tips:["Prioritizează dresajul de „la picior” și „lasă” foarte devreme, cât timp forța fizică e încă gestionabilă de tine.","Limitează activitatea fizică intensă (alergare lungă, sărituri) până la finalul creșterii osoase (verifică recomandarea medicului veterinar, variază pe rasă).","Preferă plimbări moderate, dese, în locul uneia lungi și solicitante.","Fii răbdător cu maturizarea emoțională — un exemplar mare de 1 an poate încă avea nevoie de aceeași blândețe ca un pui de rasă mică."],
+        watch:["Nu subestima greutatea unui exemplar tânăr — chiar „jucăuș” poate dezechilibra ușor un copil sau o persoană în vârstă.","Evită scările sau săriturile repetate (mașină, canapea) în primul an — riscă articulațiile în dezvoltare.","Nu te aștepta la maturitate comportamentală doar pentru că arată „adult” fizic — continuă dresajul consecvent dincolo de anul 1."],
+        note:"Investiția în dresaj solid de bază în primele luni contează dublu la rasele gigant — un exemplar de 60kg necorectat e mult mai greu de gestionat decât unul mic."
+      },
+      {id:"metis", title:"Metis / corcituri", emoji:"🧩", time:"variabil, adaptat individual", level:"Observă și adaptează",
+        breeds:"Orice combinație de rase — de la câini de adopție cu origine necunoscută, la încrucișări intenționate.",
+        why:"Un metis poate moșteni trăsături din oricare dintre rasele din spatele lui — cea mai bună abordare e observarea atentă a comportamentului individual, nu presupuneri bazate pe aspect.",
+        traits:["Combinație imprevizibilă de trăsături — energie, instinct de pradă, atașament, pot varia mult chiar și între frați de aceeași fătare.","Deseori beneficiază de „vigoare hibridă” — sănătate generală bună, dar nu e o regulă universală.","Adopții din adăpost pot avea istoric necunoscut — posibile experiențe traumatice anterioare care necesită răbdare suplimentară.","Personalitate adesea foarte echilibrată dacă a beneficiat de socializare timpurie bună."],
+        tips:["Observă cu atenție primele săptămâni: nivelul de energie, reacția la alți câini, la copii, la zgomote — construiește planul de dresaj pe baza a ce vezi, nu a ce presupui.","Dacă recunoști trăsături dominante dintr-o rasă cunoscută (instinct de turmă, prad, gardă), consultă secțiunea corespunzătoare din acest ghid pentru sfaturi specifice.","Pentru câini adoptați adulți, oferă timp de acomodare (2-4 săptămâni) înainte de a evalua definitiv temperamentul — stresul schimbării poate masca personalitatea reală inițial.","Aplică aceleași principii de bază (întărire pozitivă, consecvență, sesiuni scurte) indiferent de origine — funcționează universal."],
+        watch:["Nu presupune automat probleme de comportament pe baza aspectului fizic (de exemplu, asemănarea cu o rasă „dificilă”) — evaluează câinele din fața ta.","Fii atent la semne de traumă la câinii din adăpost (frică excesivă de anumite obiecte, sunete, gesturi) — pot necesita desensibilizare graduală, uneori cu ajutor de specialist.","Nu compara progresul cu „cât ar trebui să fie” pentru o rasă anume — fiecare metis are propriul ritm."],
+        note:"Unii dintre cei mai echilibrați și mai ușor de dresat câini sunt metișii — combinația de trăsături poate „echilibra” extremele unei singure rase."
+      }
+    ]
+  },
+  primajutor:{
+    label:"Prim ajutor canin", icon:"🩹",
+    items:[
+      {id:"trusa", title:"Trusa de prim ajutor — ce pui în ea", emoji:"🧰", time:"pregătire unică", level:"Esențial",
+        why:"O trusă pregătită din timp te ajută să acționezi rapid și calm, fără să cauți lucruri în panică într-o urgență reală.",
+        checklist:["Comprese sterile și bandaj adeziv","Foarfecă cu vârf rotund","Pensetă (pentru scoaterea de așchii, spini, căpușe)","Termometru digital de uz veterinar","Soluție dezinfectantă sigură pentru animale (nu apă oxigenată în exces, nu alcool pe răni deschise)","Mănuși de unică folosință","Pătură sau prosop mare (pentru transport sau căldură)","Seringă fără ac (pentru administrare de lichide, la indicația veterinarului)","Numărul veterinarului tău și al celei mai apropiate clinici de urgențe non-stop","Lesă și botniță de rezervă (util chiar și la câini calmi, un câine rănit poate mușca din reflex de durere)"],
+        note:"Ține trusa într-un loc accesibil și verifică o dată la câteva luni dacă produsele expiră (dezinfectant, medicamente prescrise)."
+      },
+      {id:"sangerare", title:"Sângerare / rană tăiată", emoji:"🩸", time:"acțiune imediată", level:"Urgență moderată",
+        recognize:["Sânge vizibil la o rană, tăietură sau zgârietură","Lins insistent al unei zone anume","Șchiopătare bruscă dacă rana e la labă"],
+        action:["Aplică presiune fermă și constantă pe rană cu o compresă curată timp de 3-5 minute, fără să ridici des pentru a verifica.","Dacă rana e pe o labă, ridică ușor membrul deasupra nivelului inimii, dacă poziția e confortabilă pentru câine.","Curăță ușor zona din jurul rănii cu soluție salină sau apă curată, doar după ce sângerarea încetinește.","Bandajează ușor, nu foarte strâns, și du câinele la veterinar dacă rana e adâncă sau largă."],
+        avoid:["Nu folosi garou improvizat decât dacă ai instruire specifică — poate afecta grav circulația.","Nu scoate obiecte înfipte adânc (așchii mari, cioburi) — pot agrava sângerarea; lasă asta pe seama veterinarului.","Nu aplica alcool sau apă oxigenată direct pe rană deschisă — irită țesutul."],
+        urgent:"Dacă sângerarea nu se oprește după 10 minute de presiune constantă, e abundentă, sau rana e adâncă/mare, mergi imediat la veterinar."
+      },
+      {id:"insolatie", title:"Insolație (hipertermie)", emoji:"🥵", time:"acțiune imediată", level:"Urgență majoră",
+        recognize:["Gâfâit excesiv și rapid, susținut","Gingii sau limbă foarte roșii sau vineții","Salivație abundentă, slăbiciune, dezorientare","Vomă sau colaps în cazuri severe"],
+        action:["Mută imediat câinele la umbră sau într-un spațiu răcoros, ventilat.","Udă-l cu apă la temperatura camerei (nu rece/înghețată) pe abdomen, lăbuțe și urechi.","Oferă apă în cantități mici, dese — nu forța să bea mult deodată.","Folosește un ventilator sau curent de aer pentru a accelera răcirea."],
+        avoid:["Nu folosi apă cu gheață sau foarte rece — poate provoca șoc prin răcire prea bruscă.","Nu forța apă pe gât în cantitate mare — risc de înec.","Nu presupune că e în regulă doar pentru că pare să-și revină — insolația poate avea efecte interne întârziate."],
+        urgent:"Insolația este întotdeauna o urgență — chiar dacă simptomele par să scadă, mergi la veterinar imediat pentru verificare."
+      },
+      {id:"inecare", title:"Înecare cu un obiect (obstrucție căi respiratorii)", emoji:"😧", time:"acțiune imediată", level:"Urgență majoră",
+        recognize:["Lăbuțe dus la bot, panică vizibilă","Tuse puternică sau încercări zgomotoase de a respira","Gingii sau limbă care încep să vireze spre albastru-violet","Colaps în cazuri severe"],
+        action:["Verifică rapid gura — dacă vezi obiectul clar și accesibil, încearcă să-l scoți ușor cu degetele, fără să-l împingi mai adânc.","Dacă nu poți scoate obiectul și câinele nu mai poate respira, susține-i spatele lipit de corpul tău și aplică presiune fermă, bruscă, pe abdomen, chiar sub coaste, de câteva ori (manevră similară Heimlich, adaptată la câine).","La câini mici poți ține câinele cu capul ușor în jos în timpul manevrei, susținut ferm.","Du-te imediat la veterinar, chiar dacă obiectul a ieșit — pot exista leziuni interne."],
+        avoid:["Nu introduce degetele orbește dacă nu vezi clar obiectul — riști să-l împingi mai adânc.","Nu pierde timp încercând variante multiple dacă respirația s-a oprit complet — acționează rapid și mergi spre veterinar în paralel dacă poți avea pe altcineva la volan."],
+        urgent:"Orice episod de obstrucție respiratorie necesită control veterinar imediat, indiferent cum pare să evolueze."
+      },
+      {id:"otravire", title:"Otrăvire / ingerare de substanță toxică", emoji:"☠️", time:"acțiune imediată", level:"Urgență majoră",
+        recognize:["Vomă bruscă și neașteptată","Tremurături, salivație excesivă, letargie neobișnuită","Convulsii sau dezorientare severă în cazuri grave"],
+        action:["Îndepărtează imediat sursa și orice rest din preajma câinelui.","Păstrează ambalajul sau o mostră din ce a ingerat, ca să arăți veterinarului — ajută enorm la tratament.","Sună imediat veterinarul sau un centru de urgențe veterinare și descrie exact ce și cât a ingerat, dacă știi.","Urmează întocmai indicațiile primite la telefon de la profesionist."],
+        avoid:["NU induce voma decât dacă ești instruit explicit de un veterinar — unele substanțe provoacă mai multe daune la eliminare pe cale orală.","Nu administra remedii de casă (lapte, ulei, sare) fără indicație de specialist — pot agrava situația.","Nu aștepta să vezi dacă „trece de la sine” — otrăvirea poate avea efect întârziat."],
+        urgent:"Orice suspiciune de otrăvire necesită contact imediat cu veterinarul — timpul contează enorm în aceste cazuri."
+      },
+      {id:"torsiune", title:"Torsiune gastrică / balonare (bloat)", emoji:"🚨", time:"acțiune imediată", level:"Urgență critică",
+        recognize:["Abdomen vizibil umflat și tare la atingere","Încercări repetate, neproductive de a voma (fără să iasă nimic)","Neliniște extremă, salivație abundentă, respirație grea","Colaps în stadii avansate"],
+        action:["Du câinele IMEDIAT la cea mai apropiată clinică veterinară de urgență — nu există tratament la domiciliu pentru această afecțiune.","Sună din drum clinica, dacă poți, ca să fie pregătiți la sosire.","Nu oferi mâncare sau apă în acest timp.","Menține câinele cât mai calm și mișcă-l cât mai puțin posibil în timpul transportului."],
+        avoid:["Nu aștepta „să vezi dacă trece” — torsiunea gastrică poate deveni fatală în câteva ore.","Nu oferi apă, mâncare sau medicamente orale.","Nu masa sau apăsa zona abdominală umflată."],
+        urgent:"Aceasta este una dintre cele mai critice urgențe veterinare, frecventă la rasele mari, cu piept adânc — fiecare minut contează. Mergi direct la urgențe, fără să aștepți programare."
+      },
+      {id:"convulsii", title:"Convulsii", emoji:"⚡", time:"în timpul episodului", level:"Urgență, în funcție de durată",
+        recognize:["Contracții musculare necontrolate, tremur intens","Pierdere temporară a cunoștinței sau a controlului corpului","Mișcări de „pedalare”, salivație abundentă"],
+        action:["Îndepărtează obiectele din jurul câinelui care l-ar putea răni în timpul mișcărilor necontrolate.","Cronometrează durata episodului — informația e importantă pentru veterinar.","Vorbește calm și încet, redu luminile și zgomotul din jur.","După ce episodul trece, lasă câinele să-și revină liniștit, într-un spațiu confortabil, și sună veterinarul pentru a raporta episodul."],
+        avoid:["Nu ține sau imobiliza forțat câinele în timpul convulsiei.","Nu pune mâna sau vreun obiect în gura câinelui — riști o mușcătură involuntară din reflex, iar câinii nu își pot înghiți limba precum oamenii cred.","Nu turna apă sau lichide în gură în timpul episodului."],
+        urgent:"Dacă o convulsie durează peste 5 minute, sau apar mai multe episoade succesive fără revenire completă între ele, e o urgență — mergi imediat la veterinar."
+      }
+    ]
+  },
+  sezonier:{
+    label:"Sfaturi sezoniere", icon:"🌦️",
+    items:[
+      {id:"vara", title:"Vara — protecție la căldură", emoji:"☀️", time:"sezonier", level:"Prevenție",
+        why:"Căldura excesivă este una dintre cele mai frecvente urgențe veterinare vara — și una dintre cele mai ușor de prevenit cu câteva obiceiuri simple.",
+        doList:["Programează plimbările dimineața devreme sau seara târziu, când asfaltul și aerul sunt mai răcoroase.",
+          "Testează asfaltul cu dosul palmei timp de 5 secunde — dacă e prea fierbinte pentru mâna ta, e prea fierbinte și pentru lăbuțele lui.",
+          "Asigură apă proaspătă mereu la îndemână, inclusiv o variantă portabilă la plimbări mai lungi.",
+          "Oferă acces constant la umbră, atât acasă cât și în curte.",
+          "Fii extra atent la rasele brahicefale (Bulldog, Mops) și la câinii seniori sau supraponderali — sunt mult mai vulnerabili la căldură."],
+        dontList:["Nu lăsa niciodată câinele în mașină, nici măcar câteva minute — temperatura interioară poate deveni periculoasă chiar și cu geamul crăpat, chiar și la umbră.",
+          "Nu forța exercițiu fizic intens (aport, alergare) în orele de vârf de căldură ale zilei.",
+          "Nu rade complet blana raselor cu dublu strat (Husky, Ciobănesc German) — blana îi protejează de căldură și de radiațiile UV, nu doar de frig."],
+        note:"Dacă observi gâfâit excesiv, gingii foarte roșii sau slăbiciune bruscă, verifică lecția „Insolație” din secțiunea Prim ajutor — recunoașterea rapidă a semnelor contează enorm."
+      },
+      {id:"iarna", title:"Iarna — frig, gheață și substanțe de deszăpezire", emoji:"❄️", time:"sezonier", level:"Prevenție",
+        why:"Frigul, sarea de pe trotuare și antigelul din parcări sunt riscuri specifice sezonului rece, adesea subestimate.",
+        doList:["Îmbracă în haine termice câinii cu blană scurtă, de talie mică sau seniori pe vreme geroasă.",
+          "Șterge lăbuțele cu un prosop umed după fiecare plimbare, pentru a elimina sarea sau resturile de antigel pe care le-ar putea linge.",
+          "Scurtează plimbările pe vreme extrem de rece, mai ales la câinii mici sau cu blană rară.",
+          "Ia în calcul o cremă protectoare pentru pernuțe dacă mergi frecvent pe suprafețe cu sare sau gheață."],
+        dontList:["Nu lăsa acces la antigel (etilen glicol) — are gust dulce care atrage animalele, dar este extrem de toxic chiar și în cantități mici.",
+          "Nu lăsa câinele afară neadăpostit pe vreme geroasă doar pentru că e o rasă „nordică” — tot are nevoie de refugiu cald și uscat.",
+          "Nu presupune că o blană groasă elimină complet riscul de hipotermie, mai ales la expunere prelungită sau vreme umedă."],
+        note:"Semnele de hipotermie includ tremur intens, letargie și lăbuțe reci la atingere — dacă apar, adu câinele într-un spațiu cald imediat și contactează veterinarul dacă nu-și revine rapid."
+      },
+      {id:"revelion", title:"Revelion și artificii — zgomote puternice", emoji:"🎆", time:"sezonier", level:"Gestionare stres",
+        why:"Frica de zgomote puternice e una dintre cele mai comune probleme la Revelion — poate declanșa panică intensă, tentative de fugă sau chiar autovătămare la unii câini.",
+        doList:["Pregătește dinainte un spațiu sigur, izolat fonic pe cât posibil (o cameră interioară, cu perdele trase), cu jucăriile lui preferate.",
+          "Scoate-l la plimbarea principală devreme, înainte de lăsarea serii, cât zgomotele încă nu au început.",
+          "Verifică din timp plăcuța de identificare și microciparea — multe fugi accidentale au loc exact în această perioadă.",
+          "Rămâi calm și comportă-te firesc — reacția ta liniștită îl ajută să regleze mai ușor propria stare.",
+          "Dacă știi dinainte că e sensibil la zgomote, începe cu săptămâni înainte o desensibilizare graduală: redă înregistrări cu artificii la volum foarte scăzut, crescând treptat, cu recompense (vezi lecția „Obișnuirea cu atingere și zgomote” din secțiunea Pui — principiul e identic la orice vârstă)."],
+        dontList:["Nu certa frica, dar nici nu consola excesiv, cu voce agitată — ambele reacții pot întări starea de panică.",
+          "Nu-l lăsa liber în curte neîmprejmuită complet în seara respectivă, oricât de sigur pare de obicei.",
+          "Nu ignora complet un câine în panică extremă — prezența ta calmă contează, chiar dacă nu poți elimina complet frica."],
+        note:"Dacă frica e severă an de an (tremur intens, încercări de evadare, autovătămare), discută din timp cu veterinarul — există opțiuni sigure de sprijin (calmante ușoare sau feromoni sintetici), disponibile doar cu recomandare de specialist."
+      }
+    ]
+  },
+  sanatate:{
+    label:"Vaccinări și deparazitări", icon:"💉",
+    items:[
+      {id:"vaccin-pui", title:"Vaccinarea puiului — schemă orientativă", emoji:"💉", time:"6–16 săptămâni", level:"Esențial",
+        why:"Vaccinarea protejează puiul de boli infecțioase grave (parvoviroză, jigodie, hepatită) exact în perioada în care sistemul imunitar e încă vulnerabil, după ce protecția primită de la mamă scade.",
+        steps:[
+          "6–8 săptămâni: primul vaccin combinat (polivalent) — acoperă de obicei parvoviroză, jigodie, hepatită și parainfluență.",
+          "10–12 săptămâni: al doilea rapel al vaccinului combinat.",
+          "14–16 săptămâni: al treilea rapel combinat, plus primul vaccin antirabic (vârsta exactă poate varia după legislația locală).",
+          "12 luni: rapel complet (combinat + antirabic) la un an de la seria inițială, marcând trecerea la schema de adult."
+        ],
+        note:"Schema exactă variază după producătorul vaccinului, zona geografică și recomandarea veterinarului tău — folosește acest calendar doar ca reper general și confirmă datele exacte la controalele de rutină."
+      },
+      {id:"vaccin-adult", title:"Vaccinarea câinelui adult — rapeluri", emoji:"💉", time:"anual sau la 3 ani", level:"Esențial",
+        why:"Imunitatea oferită de vaccinuri scade treptat în timp — rapelurile regulate mențin protecția pe tot parcursul vieții câinelui.",
+        steps:[
+          "Vaccin antirabic: rapel anual sau la 3 ani, în funcție de tipul de vaccin folosit și legislația locală.",
+          "Vaccin combinat (polivalent): de regulă rapel anual, conform recomandării veterinarului.",
+          "Control veterinar anual de rutină, chiar și în anii fără vaccin programat — ajută la depistarea din timp a problemelor de sănătate."
+        ],
+        note:"Păstrează carnetul de sănătate/pașaportul actualizat — e obligatoriu pentru călătorii și util la orice vizită veterinară."
+      },
+      {id:"deparazitare-interna", title:"Deparazitarea internă (viermi)", emoji:"🪱", time:"variază pe vârstă", level:"Esențial",
+        why:"Paraziții interni pot afecta grav digestia și dezvoltarea puilor, și în anumite cazuri pot fi transmisibili și către oameni.",
+        steps:[
+          "Pui: la fiecare 2 săptămâni, de la vârsta de 2 săptămâni până la 12 săptămâni.",
+          "6–12 luni: deparazitare lunară.",
+          "Adult: de regulă la fiecare 3 luni, sau conform recomandării veterinarului, în funcție de stilul de viață (acces la exterior, contact cu alți câini)."
+        ],
+        note:"Produsul potrivit și doza corectă depind de greutatea câinelui — se stabilesc împreună cu medicul veterinar, nu prin estimare proprie."
+      },
+      {id:"deparazitare-externa", title:"Deparazitarea externă (purici și căpușe)", emoji:"🕷️", time:"lunar, sezonier", level:"Esențial",
+        why:"Căpușele pot transmite boli grave, iar puricii provoacă disconfort și pot infesta rapid toată casa dacă nu sunt controlați la timp.",
+        steps:[
+          "Aplică tratament preventiv lunar, mai ales în sezonul cald (primăvară–toamnă) — unele produse se folosesc tot anul, în funcție de climă.",
+          "Verifică blana și pielea după fiecare plimbare în zone cu vegetație înaltă.",
+          "Dacă găsești o căpușă, scoate-o cât mai repede cu un instrument potrivit (nu cu mâna liberă) și dezinfectează zona."
+        ],
+        note:"Discută cu veterinarul ce tip de produs (pipetă, guler, tabletă) se potrivește cel mai bine stilului de viață al câinelui tău."
+      }
+    ]
+  },
+  pui:{
+    label:"Dresaj pentru pui (0–6 luni)", icon:"🐶",
+    items:[
+      {id:"socializare", title:"Fereastra de socializare", emoji:"🌍", time:"3–14 săptămâni", level:"Esențial",
+        why:"Perioada 3–14 săptămâni este fereastra critică în care puiul învață ce e „normal” și sigur în lume. Experiențele pozitive de acum reduc frica și agresivitatea la maturitate.",
+        steps:[
+          "Expune puiul, treptat și pozitiv, la oameni diferiți (vârste, înfățișări), alți câini vaccinați și suprafețe diferite (iarbă, gresie, metal).",
+          "Introdu sunete casnice comune (aspirator, uscător de păr) de la distanță, la volum mic, cu recompense.",
+          "Fă fiecare experiență nouă scurtă și plăcută — oprește-te înainte ca puiul să pară copleșit.",
+          "Obișnuiește-l cu manipularea: atinge lăbuțele, urechile, gura, coada, blând, cu recompense — ajută enorm la vizitele veterinare ulterioare.",
+          "Urmărește semnele de disconfort (coadă între picioare, lins de bot, evitare) și retrage-te la un nivel mai ușor dacă apar."
+        ],
+        mistakes:["Așteptarea finalizării complete a vaccinurilor pentru orice tip de socializare — poți socializa sigur în medii controlate (acasă la prieteni, curte) chiar înainte de finalul schemei.","Expunerea copleșitoare (parcuri aglomerate, petreceri) prea devreme.","Forțarea interacțiunii când puiul arată clar frică."]
+      },
+      {id:"olita", title:"Educația la eliminare (litieră/afară)", emoji:"🚽", time:"4–8 săptămâni", level:"Esențial",
+        why:"Consecvența în primele săptămâni scurtează dramatic perioada de accidente în casă.",
+        steps:[
+          "Scoate-l afară (sau la locul stabilit) imediat după somn, masă, joacă, și la fiecare 1-2 ore.",
+          "Alege un loc fix și du-l mereu acolo — mirosul îl ajută să asocieze locul cu acțiunea.",
+          "Recompensează generos, imediat după ce termină, nu în drum spre casă.",
+          "Supraveghează activ înăuntru: dacă începe să adulmece în cerc sau se agită brusc, du-l imediat afară.",
+          "Curăță accidentele cu soluție enzimatică — resturile de miros îl pot atrage să repete în același loc."
+        ],
+        mistakes:["Certarea după fapt („i-a arătat mizeria”) — puiul nu face legătura, doar se sperie de tine.","Program neregulat de hrănire/ieșire — inconsecvența întârzie învățarea.","Renunțarea la supraveghere prea devreme, înainte de câteva săptămâni fără accidente."]
+      },
+      {id:"program", title:"Program zilnic și hrănire", emoji:"⏰", time:"Continuu", level:"Ușor",
+        why:"Un program previzibil reduce anxietatea puiului și facilitează toate celelalte antrenamente.",
+        steps:[
+          "Hrănește la ore fixe, de 3-4 ori/zi pentru puii sub 6 luni (verifică recomandarea exactă la medicul veterinar, în funcție de rasă).",
+          "Stabilește ore fixe pentru somn, joacă, plimbări scurte și timp liniștit — puii au nevoie de multe ore de somn (până la 18-20h/zi).",
+          "Introdu cușca/țarcul ca spațiu personal de odihnă, nu ca pedeapsă — asociază-l cu lucruri plăcute (jucării, gustări).",
+          "Menține consecvență în weekend și zile libere, pe cât posibil — schimbările bruște pot deregla obiceiurile deja formate."
+        ],
+        mistakes:["Hrănire „la liber” tot timpul — îngreunează controlul digestiv și educația la eliminare.","Program complet diferit în weekend — creează confuzie.","Trezirea forțată din somn pentru joacă — puii obosiți devin iritabili, ca și copiii mici."]
+      },
+      {id:"bite-inhibition", title:"Mușcatul jucăuș (control al forței)", emoji:"😬", time:"4–6 săptămâni", level:"Esențial",
+        why:"Puii mușcă natural în joacă — obiectivul nu e eliminarea completă imediată, ci învățarea controlului forței (bite inhibition), esențial pe termen lung.",
+        steps:[
+          "Când mușcă prea tare, scoate un „Au!” scurt și ascuțit, apoi oprește jocul 10-20 secunde.",
+          "Reia jocul; dacă mușcă din nou tare, oprește jocul de tot pentru acel moment (ridică-te și pleacă).",
+          "Oferă constant o jucărie ca alternativă la mâini/haine în timpul jocului.",
+          "Pe măsură ce mușcatul devine mai blând, ridică treptat pragul de toleranță — scopul final e gura complet blândă, apoi fără contact deloc pe piele."
+        ],
+        mistakes:["Reacții dure (țipăt, lovitură) — pot speria puiul sau, dimpotrivă, îl pot excita mai tare.","Joaca dură cu mâinile goale ca „luptă” — normalizează mușcatul mâinilor.","Așteptări nerealiste — controlul complet vine treptat, în săptămâni, nu într-o zi."]
+      },
+      {id:"prima-noapte", title:"Prima noapte acasă & cușca", emoji:"🌙", time:"1–2 săptămâni", level:"Mediu",
+        why:"Tranziția de la mamă și frați poate fi stresantă; o cușcă/culcuș introdus corect devine rapid „bârlogul” de siguranță al puiului.",
+        steps:[
+          "Amplasează cușca lângă patul tău în primele nopți — apropierea reduce stresul de separare bruscă.",
+          "Introdu cușca ziua, cu ușa deschisă, cu recompense și mese servite înăuntru, înainte de a o folosi noaptea.",
+          "Scoate puiul la eliminat chiar înainte de culcare și, dacă e nevoie, o dată în timpul nopții la puii foarte mici.",
+          "Ignoră scâncetele ușoare de acomodare, dar răspunde dacă par un semnal clar de nevoie fiziologică.",
+          "Mută treptat cușca spre locația finală dorită, pe parcursul câtorva săptămâni, dacă vrei alt loc pe termen lung."
+        ],
+        mistakes:["Folosirea cuștii ca pedeapsă — distruge asocierea pozitivă necesară.","Cedarea imediată la orice scâncet — poate învăța puiul că plânsul aduce mereu atenție instant.","Cușcă prea mare — puiul poate folosi un colț ca toaletă; alege o mărime potrivită vârstei, cu posibilitate de extindere."]
+      },
+      {id:"desensibilizare", title:"Obișnuirea cu atingere și zgomote", emoji:"🔊", time:"Continuu, primele luni", level:"Mediu",
+        why:"Puii expuși gradual și pozitiv la zgomote și manipulare devin adulți mai calmi la veterinar, groomer sau furtună.",
+        steps:[
+          "Redă sunete înregistrate (furtună, artificii, aspirator) la volum foarte scăzut, cu recompense simultane, crescând treptat volumul pe parcursul zilelor.",
+          "Exersează zilnic manipularea blândă: lăbuțe, urechi, coadă, verificarea dinților — cu recompense la fiecare pas.",
+          "Simulează scurt situații de la veterinar/groomer (ridicare pe masă, periaj) acasă, în mod jucăuș.",
+          "Oprește-te imediat dacă apar semne de stres real și reia la un nivel mai blând data următoare."
+        ],
+        mistakes:["Creșterea prea rapidă a intensității stimulului.","Consolarea excesivă în timpul fricii (poate întări reacția de teamă) — mai eficient e să rămâi calm și să oferi distanță/recompense.","Sărirea completă a acestui pas — mulți câini adulți fricoși la veterinar nu au fost niciodată desensibilizați ca pui."]
+      }
+    ]
+  }
+};
+
+/* ===================== STATE ===================== */
+const STORE_KEY = "laba-buna-progress-v1";
+function loadProgress(){
+  try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveProgress(p){ localStorage.setItem(STORE_KEY, JSON.stringify(p)); }
+let progress = loadProgress();
+
+function allLessons(){
+  return Object.entries(DATA).flatMap(([catKey, cat]) => cat.items.map(it => ({...it, catKey})));
+}
+
+/* ===================== RENDER ===================== */
+function catProgress(catKey){
+  const items = DATA[catKey].items;
+  const done = items.filter(i => progress[i.id]).length;
+  return {done, total: items.length, pct: items.length ? Math.round(done/items.length*100) : 0};
+}
+
+function renderHome(){
+  const grid = document.getElementById("catGrid");
+  grid.innerHTML = "";
+  Object.entries(DATA).forEach(([key, cat]) => {
+    if(key === "primajutor" || key === "sezonier" || key === "sanatate") return; // live inside the Utile tab, not standalone views
+    const {done,total,pct} = catProgress(key);
+    const tile = document.createElement("button");
+    tile.className = "cat-tile";
+    tile.innerHTML = `
+      <div class="icon">${cat.icon}</div>
+      <div class="name">${cat.label}</div>
+      <div class="count">${done}/${total} finalizate</div>
+      <div class="bar"><span style="width:${pct}%"></span></div>
+    `;
+    tile.onclick = () => switchView(key);
+    grid.appendChild(tile);
+  });
+  updateHeaderProgress();
+}
+
+function renderList(catKey, containerId){
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  DATA[catKey].items.forEach(item => {
+    const done = !!progress[item.id];
+    const card = document.createElement("div");
+    card.className = "lesson-card";
+    card.innerHTML = `
+      <div class="emoji">${item.emoji}</div>
+      <div class="info">
+        <h3>${item.title}</h3>
+        <div class="meta">${item.time || ""}${item.level ? " · " + item.level : ""}</div>
+      </div>
+      <div class="check ${done ? "done":""}">${done ? "✓":""}</div>
+    `;
+    card.onclick = () => openDetail(catKey, item.id);
+    container.appendChild(card);
+  });
+}
+
+function openDetail(catKey, id){
+  const item = DATA[catKey].items.find(i => i.id === id);
+  const done = !!progress[id];
+  const sheet = document.getElementById("sheet");
+
+  let body = "";
+  if(item.why){
+    body += `<h4>De ce contează</h4><p>${item.why}</p>`;
+  }
+  if(item.steps){
+    body += `<h4>Pași</h4><ol class="steps">${item.steps.map(s=>`<li>${s}</li>`).join("")}</ol>`;
+  }
+  if(item.mistakes){
+    body += `<h4>Greșeli frecvente</h4><ul class="pill-list bad">${item.mistakes.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.causes){
+    body += `<h4>Cauze posibile</h4><ul class="pill-list">${item.causes.map(s=>`<li style="padding-left:0;border-bottom:1px solid var(--line);padding:6px 0;">${s}</li>`).join("")}</ul>`;
+  }
+  if(item.doList){
+    body += `<h4>Ce faci</h4><ul class="pill-list good">${item.doList.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.dontList){
+    body += `<h4>Ce eviți</h4><ul class="pill-list bad">${item.dontList.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.breeds){
+    body += `<h4>Rase reprezentative</h4><p>${item.breeds}</p>`;
+  }
+  if(item.traits){
+    body += `<h4>Trăsături tipice</h4><ul class="pill-list">${item.traits.map(s=>`<li style="padding-left:0;border-bottom:1px solid var(--line);padding:6px 0;">${s}</li>`).join("")}</ul>`;
+  }
+  if(item.tips){
+    body += `<h4>Ce funcționează bine</h4><ul class="pill-list good">${item.tips.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.watch){
+    body += `<h4>La ce să fii atent</h4><ul class="pill-list bad">${item.watch.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.checklist){
+    body += `<h4>Ce pui în trusă</h4><ul class="pill-list good">${item.checklist.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.recognize){
+    body += `<h4>Cum recunoști</h4><ul class="pill-list">${item.recognize.map(s=>`<li style="padding-left:0;border-bottom:1px solid var(--line);padding:6px 0;">${s}</li>`).join("")}</ul>`;
+  }
+  if(item.action){
+    body += `<h4>Ce faci imediat</h4><ul class="pill-list good">${item.action.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.avoid){
+    body += `<h4>Ce eviți</h4><ul class="pill-list bad">${item.avoid.map(s=>`<li>${s}</li>`).join("")}</ul>`;
+  }
+  if(item.urgent){
+    body += `<div class="callout warn"><strong>🚨 Urgență:</strong><br>${item.urgent}</div>`;
+  }
+  if(item.vet){
+    body += `<div class="callout warn"><strong>Când suni un specialist:</strong><br>${item.vet}</div>`;
+  }
+  if(item.note){
+    body += `<div class="callout"><strong>Sfat:</strong><br>${item.note}</div>`;
+  }
+
+  sheet.innerHTML = `
+    <div class="sheet-head">
+      <button class="close" id="closeSheet">✕</button>
+      <div class="tag">${DATA[catKey].label}</div>
+      <h2>${item.emoji} ${item.title}</h2>
+      <div class="meta-row">
+        ${item.time ? `<span>⏱ ${item.time}</span>` : ""}
+        ${item.level ? `<span>📶 ${item.level}</span>` : ""}
+      </div>
+    </div>
+    <div class="sheet-body">
+      ${body}
+      <button class="mark-done ${done?"done":""}" id="markDoneBtn">
+        ${done ? "✓ Lecție finalizată" : "Marchează ca finalizată"}
+      </button>
+    </div>
+  `;
+  document.getElementById("overlay").classList.add("active");
+  document.getElementById("closeSheet").onclick = closeDetail;
+  document.getElementById("markDoneBtn").onclick = () => {
+    progress[id] = !progress[id];
+    saveProgress(progress);
+    openDetail(catKey, id); // re-render sheet
+    refreshAll();
+  };
+}
+function closeDetail(){
+  document.getElementById("overlay").classList.remove("active");
+}
+
+function renderProgress(){
+  const all = allLessons();
+  const done = all.filter(i => progress[i.id]).length;
+  document.getElementById("statDone").textContent = done;
+  document.getElementById("statTotal").textContent = all.length;
+  document.getElementById("statPct").textContent = (all.length ? Math.round(done/all.length*100) : 0) + "%";
+
+  const catsEl = document.getElementById("progCats");
+  catsEl.innerHTML = "";
+  Object.entries(DATA).forEach(([key, cat]) => {
+    const {done, total, pct} = catProgress(key);
+    const row = document.createElement("div");
+    row.className = "prog-cat";
+    row.innerHTML = `
+      <div class="rowtop"><b>${cat.icon} ${cat.label}</b><span>${done}/${total}</span></div>
+      <div class="prog-bar"><span style="width:${pct}%"></span></div>
+    `;
+    catsEl.appendChild(row);
+  });
+}
+
+function updateHeaderProgress(){
+  const all = allLessons();
+  const done = all.filter(i => progress[i.id]).length;
+  const pct = all.length ? Math.round(done/all.length*100) : 0;
+  document.getElementById("headerProgress").textContent = pct + "% parcurs";
+}
+
+function refreshAll(){
+  renderHome();
+  renderList("comenzi","listComenzi");
+  renderList("comportament","listComportament");
+  renderList("rase","listRase");
+  renderList("pui","listPui");
+  renderList("primajutor","listPrimAjutor");
+  renderList("sezonier","listSezonier");
+  renderList("sanatate","listSanatate");
+  renderProgress();
+}
+
+/* ===================== FEEDING GUIDE ===================== */
+const FEEDING = [
+  {emoji:"🍼", title:"Pui — 0 până la 6 luni", meals:"3–4 mese pe zi, la ore fixe",
+    points:["Hrană formulată special pentru pui (mai bogată caloric decât hrana de adult).",
+      "Orice schimbare de hrană se face treptat, pe parcursul a 7–10 zile, amestecând crescând hrana nouă cu cea veche.",
+      "Evită resturile de la masa familiei — pot deregla digestia și obișnuiesc puiul cu cerșitul la masă.",
+      "Cantitatea exactă variază după rasă și marcă de hrană — urmează recomandarea de pe ambalaj și confirmă cu veterinarul la primul control."]},
+  {emoji:"🐕", title:"Junior — 6 până la 12 luni", meals:"2–3 mese pe zi",
+    points:["Trecerea la hrană de adult se face gradual, iar momentul potrivit diferă pe rasă — rasele mari/gigant maturează mai lent și rămân pe hrană de pui/junior mai mult timp.",
+      "Continuă cu tranziții treptate la orice schimbare de produs.",
+      "Monitorizează greutatea — perioada de creștere rapidă poate duce ușor la sub- sau supraalimentare."]},
+  {emoji:"🦴", title:"Adult — 1 până la 7 ani (variază pe mărime)", meals:"2 mese pe zi (recomandat față de 1 masă mare)",
+    points:["Împărțirea în 2 mese reduce riscul de balonare/torsiune gastrică, mai ales la rasele mari cu piept adânc.",
+      "Ajustează porțiile în funcție de greutate, nivelul de activitate și recomandarea de pe ambalajul hranei.",
+      "Apă proaspătă la dispoziție tot timpul, schimbată zilnic.",
+      "Evită activitatea fizică intensă imediat înainte sau după masă, mai ales la rasele predispuse la torsiune gastrică."]},
+  {emoji:"🦮", title:"Senior — 7+/6+/5+ ani, în funcție de mărime", meals:"2 mese pe zi, posibil mai mici și mai dese",
+    points:["Rasele mari și gigant intră în etapa senior mai devreme (uneori de la 5-6 ani) decât cele mici (7-8 ani).",
+      "Multe hrane senior au mai puține calorii și susțin sănătatea articulațiilor — discută opțiunile cu veterinarul.",
+      "Monitorizează greutatea mai atent — metabolismul încetinește, iar excesul ponderal agravează problemele articulare.",
+      "Controale veterinare mai frecvente ajută la ajustarea din timp a dietei."]}
+];
+
+function renderFeeding(){
+  const el = document.getElementById("listHranire");
+  el.innerHTML = FEEDING.map(f => `
+    <div class="feed-card">
+      <h3>${f.emoji} ${f.title}</h3>
+      <div class="meals">${f.meals}</div>
+      <ul>${f.points.map(p=>`<li>${p}</li>`).join("")}</ul>
+    </div>
+  `).join("");
+}
+
+/* ===================== SHOPPING CHECKLIST ===================== */
+const CHECKLIST_KEY = "laba-buna-checklist-v1";
+const CHECKLIST_DATA = [
+  {cat:"Esențiale", items:[
+    {id:"c1", label:"Bol pentru hrană și bol pentru apă"},
+    {id:"c2", label:"Hrană potrivită vârstei și mărimii"},
+    {id:"c3", label:"Zgardă sau ham, potrivite mărimii"},
+    {id:"c4", label:"Lesă"},
+    {id:"c5", label:"Culcuș sau pătuț confortabil"},
+    {id:"c6", label:"Plăcuță de identificare cu numărul tău de telefon"},
+    {id:"c7", label:"Pungi biodegradabile pentru fecale"},
+    {id:"c8", label:"Cușcă de transport (mai ales pentru drumuri/veterinar)"}
+  ]},
+  {cat:"Utile", items:[
+    {id:"c9", label:"Jucării de ros, potrivite vârstei"},
+    {id:"c10", label:"Periuță și pastă de dinți speciale pentru câini"},
+    {id:"c11", label:"Perie potrivită tipului de blană"},
+    {id:"c12", label:"Șampon canin"},
+    {id:"c13", label:"Țarc sau cușcă pentru interior (crate training)"},
+    {id:"c14", label:"Covoraș absorbant / oliță, dacă e cazul (pui, spații mici)"},
+    {id:"c15", label:"Soluție enzimatică pentru accidente în casă"}
+  ]},
+  {cat:"Opțional", items:[
+    {id:"c16", label:"Haine pentru vreme rece (rase cu blană scurtă)"},
+    {id:"c17", label:"GPS tracker pentru zgardă"},
+    {id:"c18", label:"Jucării puzzle / cu hrană ascunsă"},
+    {id:"c19", label:"Cameră de monitorizare pentru cât ești plecat"}
+  ]},
+  {cat:"De programat din prima săptămână", items:[
+    {id:"c20", label:"Prim control la medicul veterinar"},
+    {id:"c21", label:"Salvează numărul unei clinici veterinare de urgență non-stop din zona ta"},
+    {id:"c22", label:"Programează microcipare/înregistrare, dacă nu e deja făcută"}
+  ]}
+];
+
+function loadChecklist(){
+  try{ return JSON.parse(localStorage.getItem(CHECKLIST_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveChecklist(c){ localStorage.setItem(CHECKLIST_KEY, JSON.stringify(c)); }
+let checklistState = loadChecklist();
+
+function renderChecklist(){
+  const el = document.getElementById("checklistContent");
+  el.innerHTML = CHECKLIST_DATA.map(group => `
+    <div class="check-cat">${group.cat}</div>
+    ${group.items.map(it => {
+      const done = !!checklistState[it.id];
+      return `
+        <div class="check-row" data-id="${it.id}">
+          <div class="box ${done ? "done":""}">${done ? "✓":""}</div>
+          <div class="txt ${done ? "done":""}">${it.label}</div>
+        </div>
+      `;
+    }).join("")}
+  `).join("");
+  el.querySelectorAll(".check-row").forEach(row => {
+    row.onclick = () => {
+      const id = row.dataset.id;
+      checklistState[id] = !checklistState[id];
+      saveChecklist(checklistState);
+      renderChecklist();
+      updateChecklistProgress();
+    };
+  });
+}
+
+function updateChecklistProgress(){
+  const allItems = CHECKLIST_DATA.flatMap(g => g.items);
+  const done = allItems.filter(it => checklistState[it.id]).length;
+  document.getElementById("checklistCount").textContent = `${done}/${allItems.length}`;
+  const pct = allItems.length ? Math.round(done/allItems.length*100) : 0;
+  document.getElementById("checklistBar").style.width = pct + "%";
+}
+
+/* ===================== AGE CALCULATOR ===================== */
+const AGE_CURVES = {
+  mic:   {y1:15, y2:24, perYear:4,   seniorAt:8},
+  mediu: {y1:15, y2:24, perYear:5,   seniorAt:7},
+  mare:  {y1:14, y2:22, perYear:5.5, seniorAt:6.5},
+  urias: {y1:12, y2:22, perYear:7,   seniorAt:5.5}
+};
+function calcHumanAge(size, years){
+  const c = AGE_CURVES[size];
+  if(years <= 0) return 0;
+  if(years <= 1) return c.y1 * years;
+  if(years <= 2) return c.y1 + (c.y2 - c.y1) * (years - 1);
+  return c.y2 + c.perYear * (years - 2);
+}
+function stageLabel(size, years){
+  const c = AGE_CURVES[size];
+  if(years < 1) return "Pui";
+  if(years < 2) return "Adult tânăr";
+  if(years < c.seniorAt) return "Adult";
+  return "Senior";
+}
+document.getElementById("calcBtn").onclick = () => {
+  const size = document.getElementById("calcSize").value;
+  const age = parseFloat(document.getElementById("calcAge").value);
+  if(isNaN(age) || age < 0) return;
+  const human = Math.round(calcHumanAge(size, age));
+  document.getElementById("calcBig").textContent = human;
+  document.getElementById("calcStage").textContent = stageLabel(size, age);
+  document.getElementById("calcResult").classList.add("show");
+};
+
+/* ===================== UTILE SUBTABS ===================== */
+document.querySelectorAll("#utileSubtabs button").forEach(btn => {
+  btn.onclick = () => {
+    if(subtabsDidDrag) return; // don't trigger a tab switch right after a drag gesture
+    document.querySelectorAll("#utileSubtabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".usec").forEach(s => s.classList.remove("active"));
+    document.getElementById("usec-" + btn.dataset.usec).classList.add("active");
+    if(btn.scrollIntoView) btn.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+  };
+});
+
+/* Drag-to-scroll (mouse) + edge fade indicators for the subtabs bar */
+const subtabsEl = document.getElementById("utileSubtabs");
+const subtabsWrapEl = document.getElementById("subtabsWrap");
+let subtabsDrag = false, subtabsDidDrag = false, dragStartX = 0, dragStartScroll = 0;
+
+function updateSubtabsFade(){
+  const atStart = subtabsEl.scrollLeft <= 2;
+  const atEnd = subtabsEl.scrollLeft >= subtabsEl.scrollWidth - subtabsEl.clientWidth - 2;
+  subtabsWrapEl.classList.toggle("at-start", atStart);
+  subtabsWrapEl.classList.toggle("at-end", atEnd);
+}
+subtabsEl.addEventListener("scroll", updateSubtabsFade);
+updateSubtabsFade();
+
+subtabsEl.addEventListener("mousedown", (e) => {
+  subtabsDrag = true; subtabsDidDrag = false;
+  dragStartX = e.pageX; dragStartScroll = subtabsEl.scrollLeft;
+  subtabsEl.classList.add("dragging");
+});
+window.addEventListener("mousemove", (e) => {
+  if(!subtabsDrag) return;
+  const delta = e.pageX - dragStartX;
+  if(Math.abs(delta) > 4) subtabsDidDrag = true;
+  subtabsEl.scrollLeft = dragStartScroll - delta;
+});
+window.addEventListener("mouseup", () => {
+  if(subtabsDrag){
+    subtabsDrag = false;
+    subtabsEl.classList.remove("dragging");
+    setTimeout(() => { subtabsDidDrag = false; }, 50);
+  }
+});
+
+/* ===================== DARK MODE ===================== */
+const THEME_KEY = "laba-buna-theme";
+function applyTheme(t){
+  if(t === "dark"){
+    document.documentElement.setAttribute("data-theme","dark");
+    document.getElementById("themeBtn").textContent = "☀️";
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+    document.getElementById("themeBtn").textContent = "🌙";
+  }
+}
+let currentTheme = localStorage.getItem(THEME_KEY) ||
+  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+applyTheme(currentTheme);
+document.getElementById("themeBtn").onclick = () => {
+  currentTheme = currentTheme === "dark" ? "light" : "dark";
+  localStorage.setItem(THEME_KEY, currentTheme);
+  applyTheme(currentTheme);
+};
+
+/* ===================== SEARCH ===================== */
+function openSearch(){
+  document.getElementById("searchOverlay").classList.add("active");
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchResults").innerHTML = "";
+  setTimeout(() => document.getElementById("searchInput").focus(), 50);
+}
+function closeSearch(){
+  document.getElementById("searchOverlay").classList.remove("active");
+}
+document.getElementById("searchBtn").onclick = openSearch;
+document.getElementById("searchClose").onclick = closeSearch;
+
+function runSearch(query){
+  const q = query.trim().toLowerCase();
+  const resultsEl = document.getElementById("searchResults");
+  if(q.length < 2){ resultsEl.innerHTML = ""; return; }
+  const matches = allLessons().filter(item => {
+    const haystack = [
+      item.title, item.why, item.breeds,
+      ...(item.steps||[]), ...(item.mistakes||[]), ...(item.causes||[]),
+      ...(item.doList||[]), ...(item.dontList||[]), ...(item.traits||[]),
+      ...(item.tips||[]), ...(item.watch||[]), ...(item.recognize||[]),
+      ...(item.action||[]), ...(item.avoid||[])
+    ].filter(Boolean).join(" ").toLowerCase();
+    return haystack.includes(q);
+  }).slice(0, 25);
+
+  if(matches.length === 0){
+    resultsEl.innerHTML = `<div class="empty-note">Nimic găsit pentru „${query}”.</div>`;
+    return;
+  }
+  resultsEl.innerHTML = matches.map(m => `
+    <div class="search-result" data-cat="${m.catKey}" data-id="${m.id}">
+      <div class="emoji">${m.emoji}</div>
+      <div class="info">
+        <h4>${m.title}</h4>
+        <div class="cat">${DATA[m.catKey].label}</div>
+      </div>
+    </div>
+  `).join("");
+  resultsEl.querySelectorAll(".search-result").forEach(row => {
+    row.onclick = () => {
+      closeSearch();
+      const catKey = row.dataset.cat;
+      // Navigate to the right view first so "back" context makes sense
+      if(catKey === "primajutor"){
+        switchView("utile");
+        document.querySelector('#utileSubtabs button[data-usec="primajutor"]').click();
+      } else {
+        switchView(catKey);
+      }
+      openDetail(catKey, row.dataset.id);
+    };
+  });
+}
+document.getElementById("searchInput").addEventListener("input", (e) => runSearch(e.target.value));
+document.getElementById("searchOverlay").addEventListener("click", (e) => {
+  if(e.target.id === "searchOverlay") closeSearch();
+});
+
+renderFeeding();
+renderChecklist();
+updateChecklistProgress();
+
+/* ===================== TRAINING JOURNAL ===================== */
+const JOURNAL_KEY = "laba-buna-journal-v1";
+function loadJournal(){
+  try{ return JSON.parse(localStorage.getItem(JOURNAL_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveJournalData(j){ localStorage.setItem(JOURNAL_KEY, JSON.stringify(j)); }
+let journal = loadJournal(); // keyed by 'YYYY-MM-DD'
+
+function pad2(n){ return String(n).padStart(2,"0"); }
+function dateKey(d){ return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`; }
+function todayKey(){ return dateKey(new Date()); }
+
+const MOOD_EMOJI = {excelent:"😄 Excelent", bine:"🙂 Bine", dificil:"😕 Dificil"};
+const JCAT_LABEL = {comenzi:"Comenzi de bază", comportament:"Comportament", rase:"Specific rasei", pui:"Dresaj pui", altele:"Altele"};
+
+function calcStreak(){
+  const keys = Object.keys(journal);
+  if(keys.length === 0) return 0;
+  let streak = 0;
+  let d = new Date(); d.setHours(0,0,0,0);
+  let firstCheck = true;
+  while(true){
+    const key = dateKey(d);
+    if(journal[key]){
+      streak++;
+      d.setDate(d.getDate() - 1);
+      firstCheck = false;
+    } else if(firstCheck){
+      // today not logged yet — doesn't break an existing streak, just skip to yesterday once
+      firstCheck = false;
+      d.setDate(d.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+function renderJournalStats(){
+  document.getElementById("streakCount").textContent = "🔥 " + calcStreak();
+  document.getElementById("journalTotal").textContent = Object.keys(journal).length;
+}
+
+function renderJournalList(){
+  const el = document.getElementById("journalList");
+  const keys = Object.keys(journal).sort().reverse();
+  if(keys.length === 0){
+    el.innerHTML = `<div class="empty-note">Nicio însemnare încă — scrie prima ta notiță de mai sus 🐾</div>`;
+    return;
+  }
+  el.innerHTML = keys.map(key => {
+    const entry = journal[key];
+    const d = new Date(key + "T00:00:00");
+    const dateLabel = d.toLocaleDateString("ro-RO", {day:"numeric", month:"long", year:"numeric"});
+    const catLabel = entry.category ? JCAT_LABEL[entry.category] : "";
+    return `
+      <div class="journal-entry" data-key="${key}">
+        <div class="jrow">
+          <div class="jdate">${dateLabel}</div>
+          <button class="jdel" data-key="${key}">✕</button>
+        </div>
+        <div class="jmeta">${MOOD_EMOJI[entry.mood] || ""}${catLabel ? " · " + catLabel : ""}</div>
+        ${entry.text ? `<div class="jtext">${entry.text}</div>` : ""}
+      </div>
+    `;
+  }).join("");
+  el.querySelectorAll(".jdel").forEach(btn => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      delete journal[btn.dataset.key];
+      saveJournalData(journal);
+      renderJournalStats();
+      renderJournalList();
+    };
+  });
+}
+
+function loadTodayIntoForm(){
+  const entry = journal[todayKey()];
+  if(entry){
+    document.getElementById("journalMood").value = entry.mood || "excelent";
+    document.getElementById("journalCategory").value = entry.category || "";
+    document.getElementById("journalText").value = entry.text || "";
+    document.getElementById("journalSaveBtn").textContent = "Actualizează însemnarea de azi";
+  } else {
+    document.getElementById("journalSaveBtn").textContent = "Salvează însemnarea de azi";
+  }
+}
+
+document.getElementById("journalSaveBtn").onclick = () => {
+  const mood = document.getElementById("journalMood").value;
+  const category = document.getElementById("journalCategory").value;
+  const text = document.getElementById("journalText").value.trim();
+  journal[todayKey()] = {mood, category, text, ts: Date.now()};
+  saveJournalData(journal);
+  renderJournalStats();
+  renderJournalList();
+  loadTodayIntoForm();
+};
+
+loadTodayIntoForm();
+renderJournalStats();
+renderJournalList();
+
+/* ===================== HEALTH REMINDERS ===================== */
+const REMINDERS_KEY = "laba-buna-reminders-v1";
+function loadReminders(){
+  try{ return JSON.parse(localStorage.getItem(REMINDERS_KEY)) || []; }catch(e){ return []; }
+}
+function saveReminders(r){ localStorage.setItem(REMINDERS_KEY, JSON.stringify(r)); }
+let reminders = loadReminders();
+
+function daysUntil(dateStr){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const target = new Date(dateStr + "T00:00:00");
+  return Math.round((target - today) / 86400000);
+}
+function reminderStatus(diff){
+  if(diff < 0) return {cls:"overdue", label:`Restanță de ${Math.abs(diff)} ${Math.abs(diff)===1?"zi":"zile"}`};
+  if(diff === 0) return {cls:"soon", label:"Astăzi"};
+  if(diff <= 7) return {cls:"soon", label:`Peste ${diff} ${diff===1?"zi":"zile"}`};
+  return {cls:"normal", label:`Peste ${diff} zile`};
+}
+function escapeICS(text){
+  return String(text).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+}
+function downloadICS(title, dateStr){
+  const dt = dateStr.replace(/-/g,"");
+  const uid = "reminder-" + Date.now() + "@ghid-dresaj-canin";
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ghid dresaj canin//RO","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:" + uid,
+    "DTSTAMP:" + dt + "T090000Z",
+    "DTSTART;VALUE=DATE:" + dt,
+    "SUMMARY:" + escapeICS(title),
+    "DESCRIPTION:" + escapeICS("Reminder din aplicația Ghid dresaj canin"),
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:" + escapeICS(title),"TRIGGER:-P0DT9H0M0S","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "reminder.ics";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function renderReminders(){
+  const el = document.getElementById("reminderList");
+  if(reminders.length === 0){
+    el.innerHTML = `<div class="empty-note">Niciun reminder încă — adaugă unul mai sus.</div>`;
+    return;
+  }
+  const sorted = [...reminders].sort((a,b) => a.date.localeCompare(b.date));
+  el.innerHTML = sorted.map(r => {
+    const diff = daysUntil(r.date);
+    const status = reminderStatus(diff);
+    const d = new Date(r.date + "T00:00:00");
+    const dateLabel = d.toLocaleDateString("ro-RO", {day:"numeric", month:"long", year:"numeric"});
+    return `
+      <div class="reminder-row">
+        <div class="rinfo">
+          <div class="rtitle">${r.title}</div>
+          <div class="rdate ${status.cls}">${status.label} · ${dateLabel}</div>
+        </div>
+        <div class="ractions">
+          <button class="ric-btn" data-action="ics" data-id="${r.id}" title="Adaugă în calendar">📅</button>
+          <button class="ric-btn" data-action="del" data-id="${r.id}" title="Șterge">✕</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+  el.querySelectorAll('.ric-btn[data-action="ics"]').forEach(btn => {
+    btn.onclick = () => {
+      const r = reminders.find(x => String(x.id) === btn.dataset.id);
+      if(r) downloadICS(r.title, r.date);
+    };
+  });
+  el.querySelectorAll('.ric-btn[data-action="del"]').forEach(btn => {
+    btn.onclick = () => {
+      reminders = reminders.filter(x => String(x.id) !== btn.dataset.id);
+      saveReminders(reminders);
+      renderReminders();
+    };
+  });
+}
+
+document.getElementById("remAddBtn").onclick = () => {
+  const title = document.getElementById("remTitle").value.trim();
+  const date = document.getElementById("remDate").value;
+  if(!title || !date) return;
+  reminders.push({id: Date.now(), title, date});
+  saveReminders(reminders);
+  document.getElementById("remTitle").value = "";
+  document.getElementById("remDate").value = "";
+  renderReminders();
+};
+
+renderReminders();
+
+/* ===================== NAV ===================== */
+function switchView(name){
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.getElementById("view-"+name).classList.add("active");
+  document.querySelectorAll("nav.tabbar button").forEach(b => b.classList.toggle("active", b.dataset.view === name));
+  window.scrollTo({top:0, behavior:"instant"});
+}
+document.querySelectorAll("nav.tabbar button").forEach(btn => {
+  btn.onclick = () => switchView(btn.dataset.view);
+});
+document.getElementById("overlay").addEventListener("click", (e) => {
+  if(e.target.id === "overlay") closeDetail();
+});
+document.getElementById("resetBtn").onclick = () => {
+  if(confirm("Sigur vrei să resetezi tot progresul salvat?")){
+    progress = {};
+    saveProgress(progress);
+    refreshAll();
+  }
+};
+
+/* Greeting by time of day */
+(function(){
+  const h = new Date().getHours();
+  const el = document.getElementById("greeting");
+  if(h < 12) el.textContent = "Bună dimineața! Hai să exersăm puțin 🐾";
+  else if(h < 18) el.textContent = "O sesiune scurtă acum? 5 minute sunt suficiente 🐾";
+  else el.textContent = "Seara e perfectă pentru exerciții de calm 🐾";
+})();
+
+refreshAll();
+
+/* ===================== PWA: Service worker ===================== */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
