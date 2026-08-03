@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.chitubgd_lang.twa",
+        "sha256_cert_fingerprints": ["96:C9:C1:18:15:0B:C1:D0:2A:BC:47:46:FF:AD:E8:FA:0D:EB:64:1A:F9:39:07:DA:0B:CE:1E:D2:6C:17:84:FE"]
+      }
+    }]
