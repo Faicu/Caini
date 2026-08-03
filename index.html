@@ -110,15 +110,18 @@
   }
   header.top .icon-btns{display:flex; gap:8px;}
   header.top .tagline{font-size:13px; color:var(--gold-light); margin-top:2px; font-weight:500;}
-  header.top .subrow{display:flex; justify-content:space-between; align-items:flex-end; margin-top:16px;}
-  .progress-pill{
-    background:rgba(255,255,255,0.1);
-    border:1px solid rgba(231,189,106,0.35);
-    border-radius:999px;
-    padding:6px 12px;
-    font-size:12px;
-    color:var(--gold-light);
-    font-weight:600;
+  header.top .subrow{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
+  .progress-ring-wrap{position:relative; width:44px; height:44px; flex:none;}
+  .progress-ring-wrap svg{width:100%; height:100%; transform:rotate(-90deg);}
+  .progress-ring-wrap circle{fill:none; stroke-width:3;}
+  .ring-bg{stroke:rgba(255,255,255,0.18);}
+  .ring-fill{
+    stroke:var(--gold-light); stroke-linecap:round; stroke-dasharray:97.39; stroke-dashoffset:97.39;
+    transition:stroke-dashoffset .8s cubic-bezier(.34,1.1,.64,1);
+  }
+  .ring-text{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:#fff; font-family:'Baloo 2';
   }
 
   main{padding:18px 16px 12px;}
@@ -150,8 +153,14 @@
   .cat-tile{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
     padding:16px 14px; box-shadow:var(--shadow); cursor:pointer; text-align:left;
-    display:flex; flex-direction:column; gap:8px; min-height:118px;
+    display:flex; flex-direction:column; gap:8px; min-height:118px; position:relative;
   }
+  .cat-trophy{
+    position:absolute; top:10px; right:10px; font-size:15px; width:26px; height:26px; border-radius:50%;
+    background:var(--gold-light); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 6px rgba(201,147,47,0.4); animation:trophypop .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes trophypop{from{transform:scale(0) rotate(-30deg); opacity:0;} to{transform:scale(1) rotate(0); opacity:1;}}
   .cat-tile .icon{
     font-size:22px; width:44px; height:44px; border-radius:13px; flex:none;
     display:flex; align-items:center; justify-content:center;
@@ -295,7 +304,6 @@
   nav.tabbar button.active{color:var(--forest);}
   nav.tabbar button.active .ic{transform:translateY(-1px) scale(1.1);}
 
-  .empty-note{font-size:12.5px; color:var(--ink-soft); text-align:center; padding:20px 10px;}
 
   /* ---- Search overlay ---- */
   .search-overlay{
@@ -421,6 +429,22 @@
     width:30px; height:30px; border-radius:50%; border:1px solid var(--line); background:var(--ivory);
     color:var(--ink-soft); cursor:pointer; font-size:13px; display:flex; align-items:center; justify-content:center;
   }
+
+  /* ---- Confetti (celebrare la finalizarea unei lecții/categorii) ---- */
+  .confetti-piece{
+    position:fixed; width:7px; height:7px; top:0; left:0; pointer-events:none; z-index:999; border-radius:2px;
+  }
+  @keyframes confettiFall{
+    0%{transform:translate(0,0) rotate(0deg); opacity:1;}
+    100%{transform:translate(var(--dx,0px), 340px) rotate(var(--rot,540deg)); opacity:0;}
+  }
+
+  /* ---- Empty states prietenoase ---- */
+  .empty-note{
+    font-size:13px; color:var(--ink-soft); text-align:center; padding:32px 20px;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .empty-note .big-icon{font-size:34px; opacity:.75;}
 </style>
 </head>
 <body>
@@ -444,7 +468,13 @@
     <div class="tagline">Ghidul tău complet de dresaj canin</div>
     <div class="subrow">
       <div style="font-size:12px; color:rgba(255,255,255,0.7);" id="greeting">Hai să începem antrenamentul de azi 🐾</div>
-      <div class="progress-pill" id="headerProgress">0% parcurs</div>
+      <div class="progress-ring-wrap" id="headerProgress" title="Progres general">
+        <svg viewBox="0 0 36 36">
+          <circle class="ring-bg" cx="18" cy="18" r="15.5"/>
+          <circle class="ring-fill" id="ringFill" cx="18" cy="18" r="15.5"/>
+        </svg>
+        <span class="ring-text" id="ringText">0%</span>
+      </div>
     </div>
   </header>
 
@@ -1194,6 +1224,7 @@ function renderHome(){
     tile.style.setProperty("--tile-accent-bg", accent.bg);
     tile.style.setProperty("--tile-accent", accent.fg);
     tile.innerHTML = `
+      ${pct === 100 ? '<div class="cat-trophy">🏆</div>' : ''}
       <div class="icon">${cat.icon}</div>
       <div class="name">${cat.label}</div>
       <div class="count">${done}/${total} finalizate</div>
@@ -1308,9 +1339,15 @@ function openDetail(catKey, id){
   `;
   document.getElementById("overlay").classList.add("active");
   document.getElementById("closeSheet").onclick = closeDetail;
-  document.getElementById("markDoneBtn").onclick = () => {
+  document.getElementById("markDoneBtn").onclick = (e) => {
+    const wasDone = !!progress[id];
     progress[id] = !progress[id];
     saveProgress(progress);
+    if(!wasDone && progress[id]){
+      const r = e.target.getBoundingClientRect();
+      const {pct} = catProgress(catKey);
+      fireConfetti(r.left + r.width/2, r.top, pct === 100 ? 40 : 18);
+    }
     openDetail(catKey, id); // re-render sheet
     refreshAll();
   };
@@ -1344,7 +1381,30 @@ function updateHeaderProgress(){
   const all = allLessons();
   const done = all.filter(i => progress[i.id]).length;
   const pct = all.length ? Math.round(done/all.length*100) : 0;
-  document.getElementById("headerProgress").textContent = pct + "% parcurs";
+  const circumference = 97.39; // 2 * PI * 15.5
+  document.getElementById("ringFill").style.strokeDashoffset = circumference * (1 - pct/100);
+  document.getElementById("ringText").textContent = pct + "%";
+}
+
+/* Confetti — mic moment de celebrare la finalizarea unei lecții/categorii */
+function fireConfetti(x, y, count){
+  count = count || 20;
+  const colors = ['#c9932f','#e7bd6a','#7a4b32','#a8492c','#4c7a3a'];
+  for(let i=0; i<count; i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    const dx = (Math.random()-0.5) * 200;
+    const rot = 360 + Math.random()*360;
+    const dur = 700 + Math.random()*500;
+    el.style.setProperty('--dx', dx + 'px');
+    el.style.setProperty('--rot', rot + 'deg');
+    el.style.animation = `confettiFall ${dur}ms ease-out forwards`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), dur + 60);
+  }
 }
 
 function refreshAll(){
@@ -1592,7 +1652,7 @@ function runSearch(query){
   }).slice(0, 25);
 
   if(matches.length === 0){
-    resultsEl.innerHTML = `<div class="empty-note">Nimic găsit pentru „${query}”.</div>`;
+    resultsEl.innerHTML = `<div class="empty-note"><span class="big-icon">🔍🐾</span>Nimic găsit pentru „${query}”. Încearcă alt cuvânt cheie.</div>`;
     return;
   }
   resultsEl.innerHTML = matches.map(m => `
@@ -1675,7 +1735,7 @@ function renderJournalList(){
   const el = document.getElementById("journalList");
   const keys = Object.keys(journal).sort().reverse();
   if(keys.length === 0){
-    el.innerHTML = `<div class="empty-note">Nicio însemnare încă — scrie prima ta notiță de mai sus 🐾</div>`;
+    el.innerHTML = `<div class="empty-note"><span class="big-icon">📓</span>Nicio însemnare încă — scrie prima ta notiță de mai sus.</div>`;
     return;
   }
   el.innerHTML = keys.map(key => {
@@ -1782,7 +1842,7 @@ function downloadICS(title, dateStr){
 function renderReminders(){
   const el = document.getElementById("reminderList");
   if(reminders.length === 0){
-    el.innerHTML = `<div class="empty-note">Niciun reminder încă — adaugă unul mai sus.</div>`;
+    el.innerHTML = `<div class="empty-note"><span class="big-icon">💉</span>Niciun reminder încă — adaugă unul mai sus.</div>`;
     return;
   }
   const sorted = [...reminders].sort((a,b) => a.date.localeCompare(b.date));
