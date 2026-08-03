@@ -9,26 +9,21 @@ Android (.aab) generat automat, **(3)** un cont de dezvoltator Google Play.
 
 ---
 
-## Pasul 1 — Găzduiește aplicația online (gratuit)
+## Pasul 1 — Găzduirea e deja gata ✅
 
-Fișierele din acest folder (`index.html`, `manifest.json`, `sw.js`, `icons/`) trebuie
-puse pe un domeniu HTTPS public — Android verifică asta pentru a permite pachetul.
-Cea mai simplă opțiune gratuită:
+Aplicația e deja live prin **GitHub Pages**, la adresa:
 
-**Firebase Hosting** (recomandat, e făcut de Google, deci se integrează perfect):
-1. Instalează Firebase CLI: `npm install -g firebase-tools`
-2. În folderul aplicației: `firebase login`, apoi `firebase init hosting`
-3. `firebase deploy` — primești un URL de tipul `https://ghid-dresaj-canin.web.app`
+**https://chitubgd-lang.github.io/Caini/**
 
-Alternative la fel de simple: **Netlify** (drag & drop folderul pe netlify.com/drop) sau
-**GitHub Pages** (gratuit, dacă ai deja cont GitHub).
+Nu mai trebuie să faci nimic la acest pas — de fiecare dată când se face `git push` pe
+branch-ul `main`, site-ul se actualizează automat în 1-2 minute.
 
 ---
 
 ## Pasul 2 — Generează pachetul Android (.aab) cu PWABuilder
 
 1. Mergi pe **https://www.pwabuilder.com**
-2. Introdu URL-ul aplicației tale găzduite (din Pasul 1) și apasă „Start”
+2. Introdu adresa **https://chitubgd-lang.github.io/Caini/** și apasă „Start”
 3. PWABuilder analizează automat `manifest.json` — ar trebui să apară scor verde/bun
    (icoanele, numele și culorile sunt deja configurate corect în acest proiect)
 4. Alege platforma **Android**, apoi generează pachetul **.aab** (Android App Bundle)
@@ -37,8 +32,11 @@ Alternative la fel de simple: **Netlify** (drag & drop folderul pe netlify.com/d
 ### Important — verificarea de proprietate a domeniului
 Pentru ca aplicația din Play Store să se deschidă fără bara de browser (ca o aplicație
 reală), trebuie să urci fișierul `assetlinks.json` primit de la PWABuilder la adresa:
-`https://domeniul-tau.com/.well-known/assetlinks.json`
-PWABuilder îți arată exact acest pas în interfață, cu instrucțiuni.
+**https://chitubgd-lang.github.io/Caini/.well-known/assetlinks.json**
+
+Pentru asta, creezi în repo folderul `.well-known/` cu fișierul `assetlinks.json` înăuntru
+și dai push — GitHub Pages îl publică automat la adresa de mai sus. (Trimite-mi conținutul
+fișierului descărcat de la PWABuilder și ți-l urc eu direct în repo.)
 
 ---
 
@@ -52,12 +50,13 @@ PWABuilder îți arată exact acest pas în interfață, cu instrucțiuni.
 
 - **Icon** de 512×512 — ai deja `icons/icon-512.png` în acest proiect
 - **Screenshot-uri** — minim 2, făcute din telefon după ce instalezi aplicația
-  (deschide URL-ul din Pasul 1 în Chrome pe Android → meniu → „Instalează aplicația”)
+  (deschide **https://chitubgd-lang.github.io/Caini/** în Chrome pe Android → meniu →
+  „Instalează aplicația”)
 - **Descriere scurtă și lungă** — poți folosi textul din secțiunea de mai jos
 - **Politică de confidențialitate** — obligatorie chiar și pentru o app simplă. Deoarece
   aplicația nu colectează date (progresul se salvează doar local, pe telefon), poți genera
-  una gratuit pe **https://app-privacy-policy-generator.firebaseapp.com** și găzduiește
-  linkul rezultat (de exemplu tot pe Firebase/Netlify).
+  una gratuit pe **https://app-privacy-policy-generator.firebaseapp.com** (poți găzdui
+  și tu rezultatul tot prin GitHub Pages, în același repo — trimite-mi textul și ți-l adaug).
 - **Chestionar de clasificare a conținutului** — completezi în consolă; pentru o aplicație
   educațională fără conținut sensibil, rezultatul e „Everyone”.
 - **Categorie sugerată:** Educație sau Lifestyle.
@@ -83,12 +82,18 @@ Google durează de obicei **1-3 zile**. După aprobare, aplicația e live pe Pla
 
 ---
 
-## Variantă alternativă (dacă preferi să nu găzduiești tu)
+## Ce pot face eu pentru tine în acest proces
 
-Dacă găzduirea unui domeniu ți se pare complicată, poți cere unui prieten cu cunoștințe
-tehnice (sau unui freelancer) să facă doar Pașii 1-2 (găzduire + generare .aab) — durează
-sub 30 de minute pentru cineva familiarizat cu asta — restul procesului (contul Play
-Console, fișa aplicației) rămâne complet în mâinile tale.
+Pot să:
+- adaug orice fișier necesar în repo (ex. `assetlinks.json`, pagina de politică de
+  confidențialitate) și să fac push, ca să apară automat pe GitHub Pages
+- ajustez `manifest.json` sau iconițele dacă PWABuilder cere modificări
+
+Nu pot să:
+- creez sau plătesc contul de Google Play Console în locul tău (necesită cardul și
+  identitatea ta)
+- rulez eu PWABuilder — e un serviciu web care cere interacțiune directă din browserul tău
+- trimit aplicația spre revizuire — se face din contul tău de Play Console
 
 ---
 
@@ -96,6 +101,7 @@ Console, fișa aplicației) rămâne complet în mâinile tale.
 
 Tot conținutul ghidului (comenzi, probleme de comportament, dresaj pui) este în fișierul
 `index.html`, în interiorul `<script>`, în obiectul `DATA`. Poți edita textele direct
-acolo, redistribui fișierele către hosting, iar aplicația se actualizează automat pe
-telefoanele utilizatorilor (nu e nevoie de o versiune nouă în Play Store pentru simple
-modificări de text, doar pentru schimbări de icon/nume/funcționalitate majoră).
+acolo (sau îmi ceri mie), redistribui fișierele către hosting — iar aplicația se
+actualizează automat pe telefoanele utilizatorilor (nu e nevoie de o versiune nouă în
+Play Store pentru simple modificări de text, doar pentru schimbări de icon/nume/
+funcționalitate majoră).
