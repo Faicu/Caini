@@ -49,6 +49,22 @@
   [data-theme="dark"] nav.tabbar{background:var(--card);}
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
+  /* Feedback tactil global — carduri și butoane "răspund" la atingere */
+  .cat-tile, .lesson-card, .principle-card, .check-row, .journal-entry,
+  .reminder-row, .search-result, .stat-card, .feed-card{
+    transition:transform .16s cubic-bezier(.34,1.56,.64,1), box-shadow .16s ease, border-color .16s ease;
+  }
+  .cat-tile:active, .lesson-card:active, .search-result:active, .check-row:active{
+    transform:scale(.97);
+  }
+  .cat-tile:hover, .lesson-card:hover, .stat-card:hover, .feed-card:hover{
+    box-shadow:0 6px 18px rgba(31,46,26,0.13), 0 2px 6px rgba(31,46,26,0.08);
+    border-color:var(--gold-light);
+  }
+  button{transition:transform .15s cubic-bezier(.34,1.56,.64,1), background .15s ease, box-shadow .15s ease;}
+  button:active{transform:scale(.95);}
+  .icon-btn:active{transform:scale(.88);}
+  .mark-done:active, .calc-btn:active{transform:scale(.97);}
   body{
     background:var(--ivory);
     color:var(--ink);
@@ -67,16 +83,25 @@
 
   /* ---- Header ---- */
   header.top{
-    background:linear-gradient(160deg, var(--forest) 0%, var(--forest-light) 100%);
+    background:
+      radial-gradient(circle at 88% -10%, rgba(231,189,106,0.18), transparent 55%),
+      linear-gradient(160deg, var(--forest) 0%, var(--forest-light) 100%);
     color:var(--ivory);
     padding:22px 20px 26px;
     position:sticky; top:0; z-index:20;
     border-bottom-left-radius:22px;
     border-bottom-right-radius:22px;
     box-shadow:var(--shadow);
+    overflow:hidden;
   }
-  header.top .brand{display:flex; align-items:center; gap:10px;}
-  header.top .brand .pawmark{width:34px;height:34px;flex:none;}
+  header.top .brand{display:flex; align-items:center; gap:10px; position:relative; z-index:1;}
+  header.top .tagline, header.top .subrow{position:relative; z-index:1;}
+  header.top .brand .pawmark{
+    width:34px;height:34px;flex:none;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    animation:pawpop .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes pawpop{from{transform:scale(.5) rotate(-15deg); opacity:0;} to{transform:scale(1) rotate(0); opacity:1;}}
   header.top .brand h1{font-size:19.5px; color:#fff; letter-spacing:.1px; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
   header.top .icon-btn{
     width:34px; height:34px; border-radius:50%; border:1px solid rgba(231,189,106,0.35);
@@ -127,11 +152,19 @@
     padding:16px 14px; box-shadow:var(--shadow); cursor:pointer; text-align:left;
     display:flex; flex-direction:column; gap:8px; min-height:118px;
   }
-  .cat-tile .icon{font-size:26px;}
+  .cat-tile .icon{
+    font-size:22px; width:44px; height:44px; border-radius:13px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--tile-accent-bg, var(--forest-pale));
+  }
   .cat-tile .name{font-family:'Baloo 2'; font-weight:700; font-size:14.5px; color:var(--forest);}
   .cat-tile .count{font-size:11.5px; color:var(--ink-soft);}
   .cat-tile .bar{height:5px; border-radius:99px; background:var(--forest-pale); overflow:hidden; margin-top:auto;}
-  .cat-tile .bar > span{display:block; height:100%; background:var(--gold); border-radius:99px;}
+  .cat-tile .bar > span{
+    display:block; height:100%; border-radius:99px;
+    background:var(--tile-accent, var(--gold));
+    transition:width .5s cubic-bezier(.34,1.2,.64,1);
+  }
 
   /* ---- Lesson list cards ---- */
   .lesson-card{
@@ -149,8 +182,11 @@
   .lesson-card .check{
     width:24px;height:24px;border-radius:50%;border:2px solid var(--line); flex:none;
     display:flex; align-items:center; justify-content:center; font-size:13px; color:transparent;
+    transition:background .2s ease, border-color .2s ease;
   }
-  .lesson-card .check.done{background:var(--gold); border-color:var(--gold); color:#fff;}
+  .lesson-card .check.done{background:var(--gold); border-color:var(--gold); color:#fff; animation:checkpop .3s cubic-bezier(.34,1.56,.64,1);}
+  .check-row .box.done{animation:checkpop .3s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes checkpop{from{transform:scale(.6);} 60%{transform:scale(1.15);} to{transform:scale(1);}}
 
   /* ---- Detail overlay ---- */
   .overlay{
@@ -240,15 +276,24 @@
   }
   nav.tabbar button{
     flex:1; min-width:0; background:none; border:none; display:flex; flex-direction:column; align-items:center;
-    gap:3px; padding:6px 1px; cursor:pointer; color:var(--ink-soft); font-family:'Inter';
+    gap:3px; padding:6px 1px; cursor:pointer; color:var(--ink-soft); font-family:'Inter'; position:relative;
   }
-  nav.tabbar button .ic{font-size:18px; line-height:1;}
+  nav.tabbar button .ic{
+    font-size:18px; line-height:1; position:relative; z-index:1;
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  }
   nav.tabbar button .lb{
     font-size:9.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    max-width:100%;
+    max-width:100%; position:relative; z-index:1; transition:color .15s ease;
   }
+  nav.tabbar button::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%) scale(.5);
+    width:38px; height:26px; border-radius:12px; background:var(--forest-pale);
+    opacity:0; transition:opacity .18s ease, transform .18s cubic-bezier(.34,1.56,.64,1);
+  }
+  nav.tabbar button.active::before{opacity:1; transform:translateX(-50%) scale(1);}
   nav.tabbar button.active{color:var(--forest);}
-  nav.tabbar button.active .ic{transform:translateY(-1px);}
+  nav.tabbar button.active .ic{transform:translateY(-1px) scale(1.1);}
 
   .empty-note{font-size:12.5px; color:var(--ink-soft); text-align:center; padding:20px 10px;}
 
@@ -1129,24 +1174,41 @@ function catProgress(catKey){
   return {done, total: items.length, pct: items.length ? Math.round(done/items.length*100) : 0};
 }
 
+/* Accente de culoare distincte per categorie, pentru un grid mai viu vizual */
+const CAT_ACCENTS = {
+  comenzi:       { bg:"#e7ede3", fg:"#4c7a3a" },
+  comportament:  { bg:"#fbeae3", fg:"#c1592f" },
+  rase:          { bg:"#eee3f5", fg:"#8a5cc4" },
+  pui:           { bg:"#fdf1d9", fg:"#c9932f" }
+};
+
 function renderHome(){
   const grid = document.getElementById("catGrid");
   grid.innerHTML = "";
   Object.entries(DATA).forEach(([key, cat]) => {
     if(key === "primajutor" || key === "sezonier" || key === "sanatate") return; // live inside the Utile tab, not standalone views
     const {done,total,pct} = catProgress(key);
+    const accent = CAT_ACCENTS[key] || { bg:"var(--forest-pale)", fg:"var(--gold)" };
     const tile = document.createElement("button");
     tile.className = "cat-tile";
+    tile.style.setProperty("--tile-accent-bg", accent.bg);
+    tile.style.setProperty("--tile-accent", accent.fg);
     tile.innerHTML = `
       <div class="icon">${cat.icon}</div>
       <div class="name">${cat.label}</div>
       <div class="count">${done}/${total} finalizate</div>
-      <div class="bar"><span style="width:${pct}%"></span></div>
+      <div class="bar"><span style="width:0%" data-target="${pct}"></span></div>
     `;
     tile.onclick = () => switchView(key);
     grid.appendChild(tile);
   });
   updateHeaderProgress();
+  // animăm barele de progres după randare, pentru un efect de "umplere"
+  requestAnimationFrame(() => {
+    grid.querySelectorAll(".bar > span").forEach(bar => {
+      bar.style.width = bar.dataset.target + "%";
+    });
+  });
 }
 
 function renderList(catKey, containerId){
