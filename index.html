@@ -1802,6 +1802,32 @@ document.getElementById("resetBtn").onclick = () => {
 
 refreshAll();
 
+/* ===================== TEST: verificare integritate date ===================== */
+function testDataIntegrity(){
+  const results = { total:0, ok:0, errors:[] };
+  Object.keys(DATA).forEach(catKey => {
+    const cat = DATA[catKey];
+    if(!cat.items || !Array.isArray(cat.items)){
+      results.errors.push(`Categoria "${catKey}" nu are o listă validă de items.`);
+      return;
+    }
+    cat.items.forEach(item => {
+      results.total++;
+      const lipsa = ["id","title","steps"].filter(k => !item[k]);
+      if(lipsa.length){
+        results.errors.push(`Lecția "${item.title || item.id || "?"}" din "${catKey}" nu are: ${lipsa.join(", ")}.`);
+      } else {
+        results.ok++;
+      }
+    });
+  });
+  const status = results.errors.length === 0 ? "✅ Toate lecțiile sunt valide." : `⚠️ ${results.errors.length} problemă/probleme găsite.`;
+  console.log(`[Test date] ${results.ok}/${results.total} lecții OK. ${status}`);
+  if(results.errors.length) console.warn(results.errors);
+  return results;
+}
+testDataIntegrity();
+
 /* ===================== PWA: Service worker ===================== */
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => {
